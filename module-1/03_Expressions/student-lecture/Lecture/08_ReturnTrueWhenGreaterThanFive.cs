@@ -17,11 +17,7 @@ namespace Lecture
         {
             if (number > 5)
             {
-
-            }
-            else
-            {
-
+                return true;
             }
             return false;
         }
