@@ -40,7 +40,8 @@ namespace Lecture
         */
         public string[] ReturnArrayOfUnknownSize(int n)
         {
-            return null;
+            return new string[n];
+           
         }
 
         
