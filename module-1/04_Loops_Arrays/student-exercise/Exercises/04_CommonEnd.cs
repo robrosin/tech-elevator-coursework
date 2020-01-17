@@ -17,6 +17,7 @@ namespace Exercises
          */
         public bool CommonEnd(int[] a, int[] b)
         {
+            if a[0] 
             return false;
         }
 
