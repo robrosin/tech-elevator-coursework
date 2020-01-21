@@ -18,7 +18,13 @@ namespace Exercises
          */
         public string FirstTwo(string str)
         {
-            return null;
+            int yield = (str.Length);
+           
+            if (yield <= 2)
+            {
+                return (str);
+            }
+            return (str.Substring(0, 2));
         }
     }
 }
