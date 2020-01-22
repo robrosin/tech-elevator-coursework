@@ -16,7 +16,23 @@ namespace Exercises
          */
         public bool DoubleX(string str)
         {
+            int twoX = 0;
+            for (int i = 0; i < str.Length - 1; i++)
+            {
+                if ((str[i] == 'x') && (twoX == 0))
+                {
+                    twoX++;
+                    if ((str[i] == 'x') && (str[i + 1] == 'x'))
+                    {
+                        return true;
+                    }
+                }
+
+            }
             return false;
         }
+
     }
-}
+} 
+    
+

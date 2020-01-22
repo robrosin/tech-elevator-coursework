@@ -17,7 +17,8 @@ namespace Exercises
          */
         public string Right2(string str)
         {
-            return null;
+            int last2 = (str.Length - 2);
+            return (str.Substring(last2) + str.Substring(0, last2));
         }
     }
 }

@@ -17,7 +17,9 @@ namespace Exercises
          */
         public string MiddleTwo(string str)
         {
-            return null;
+            int middle = (str.Length / 2);
+
+            return str.Substring(middle -1, 2);
         }
     }
 }

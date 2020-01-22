@@ -17,8 +17,16 @@ namespace Exercises
          */
         public List<string> No4LetterWords(string[] stringArray)
         {
-            return null;
+            List<string> arrList = new List<string>(); //Created new list
+            foreach (string arrStr in stringArray) // Created loop to copy stringArray to str
+            {
+                if (arrStr.Length != 4) //Checks if items in str are 4 long
+                {
+                    arrList.Add(arrStr); //Populates list
+                }
+            }
+            return arrList;
         }
-
     }
 }
+

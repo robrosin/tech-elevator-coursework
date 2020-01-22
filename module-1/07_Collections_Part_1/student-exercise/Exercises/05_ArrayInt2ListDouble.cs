@@ -16,8 +16,15 @@ namespace Exercises
          */
         public List<double> ArrayInt2ListDouble(int[] intArray)
         {
-            return null;
+            List<double> arrList = new List<double>(); //Created new list
+            foreach (double arrStr in intArray) // Created loop to copy stringArray to str
+            {
+                //(arrStr / 2) //Checks if items in str are 4 long
+                //{
+                    arrList.Add(arrStr / 2); //Populates list
+                //}
+            }
+            return arrList;
         }
-
     }
 }

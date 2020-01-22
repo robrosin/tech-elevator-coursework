@@ -17,7 +17,22 @@ namespace Exercises
          */
         public string WithoutEnd2(string str)
         {
-            return null;
+            // return str.Substring(1, (str.Length));
+
+
+            int firstLast = str.Length;
+
+            if (firstLast >= 3)
+            {
+                return str.Substring(1, firstLast - 2);
+            }
+            else
+            {
+                return "";
+            }
+
         }
     }
 }
+
+
