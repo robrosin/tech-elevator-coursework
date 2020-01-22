@@ -8,7 +8,7 @@ namespace DictionaryCollection
         static void Main(string[] args)
         {
             //DictionaryDemo();
-            
+
             //HashSetDemo();
 
             // Build a name / height database and search it
@@ -19,11 +19,67 @@ namespace DictionaryCollection
         static void DictionaryDemo()
         {
             // Demonstrate creating and searching a dictionary
+
+            Dictionary<string, string> states = new Dictionary<string, string>()
+            {
+                {"AK", "Alaska"},
+                {"AR", "Arkansas"},
+                {"AL", "Alabama"},
+                {"AZ", "Arizona"},
+                {"CO", "Colorado"},
+                {"CA", "California"},
+            };
+
+            // Does the dictionary contain AZ?
+            bool exists = states.ContainsKey("AZ");
+            Console.WriteLine($"ContainsKey(AZ): {exists}");
+
+
+            // Does the dictionary contain OH?
+            exists = states.ContainsKey("OH");
+            if (!exists)
+            {
+                states.Add("OH", "Ohio");
+            }
+            Console.WriteLine($"The value at OH is {states["OH"]} ");
+
+            // Print the codes and states
+            foreach (KeyValuePair<string, string> entry in states)
+            {
+                Console.WriteLine($"{entry.Key} : {entry.Value}");
+            }
+
+            // Print a list sorted by state code
+
+            List<string> codes = new List<string>(states.Keys);
+            codes.Sort();
+            foreach (string code in codes)
+            {
+                Console.WriteLine($"{code} : {states[code]}");
+            }
         }
 
         static void HashSetDemo()
         {
             // Demonstrate a few HashSet methods
+            HashSet<string> hs1 = new HashSet<string>() { "A", "B", "C" };
+            HashSet<string> hs2 = new HashSet<string>() { "F", "E", "D", "C" };
+            HashSet<string> hs3 = new HashSet<string>() { "F", "A", "X", "Y", "Z" };
+
+            Console.WriteLine("HasSet 2: ");
+            foreach (string s in hs2)
+            {
+                Console.WriteLine(s);
+            }
+
+            // Combines two sets, showing only one instance in the case of duplicate values
+            hs1.UnionWith(hs2);
+            Console.WriteLine(string.Join(",", hs1));
+            Console.WriteLine(string.Join(",", hs2));
+
+            // Shows values that two sets have in common
+            hs1.IntersectWith(hs3);
+            Console.WriteLine(string.Join(",", hs1));
 
         }
         static void RunHeightDatabase()
@@ -35,7 +91,15 @@ namespace DictionaryCollection
             ////      | "Bob"     | 72 |
             ////      | "John"    | 75 |
             ////      | "Jack"    | 73 |
-            Dictionary<string, int> heightDB = null;
+            Dictionary<string, int> heightDB = new Dictionary<string, int>()
+            {
+                { "AMY", 62 },
+                { "KARINA", 67 },
+                { "JAKE", 73 },
+                { "DAN", 71 },
+                { "RICHARD", 74 },
+                { "JOAN", 68 },
+            };
 
             string input;
             while (true)
@@ -98,6 +162,14 @@ namespace DictionaryCollection
         public static void ShowAverageHeight(Dictionary<string, int> heightDB)
         {
             //7. Let's get the average height of the people in the dictionary
+            int sum = 0;
+
+            foreach (int height in heightDB.Values)
+            {
+                sum += height;
+            }
+                Console.WriteLine($"Average height is {sum / (double)heightDB.Count} inches.");
+            }
         }
 
         public static void PrintDB(Dictionary<string, int> heightDB)
@@ -106,19 +178,24 @@ namespace DictionaryCollection
             // to look at each item, which is a key-value pair
             Console.WriteLine("Printing...");
 
+            foreach (var kvp in heightDB)
+            {
+                Console.WriteLine($"{kvp.Key} ... {kvp.Value} inches");
+            }
+
         }
 
         public static void AddEditDB(Dictionary<string, int> db)
         {
             Console.Write("What is the person's name?: ");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine().ToUpper().Trim();
 
             Console.Write("What is the person's height (in inches)?: ");
             int height = int.Parse(Console.ReadLine());
 
             // 2. Check to see if that name is in the dictionary
             //      bool exists = dictionaryVariable.ContainsKey(key)
-            bool exists = false;    // <-- change this
+            bool exists = db.ContainsKey(name);
 
             if (!exists)
             {
@@ -126,24 +203,31 @@ namespace DictionaryCollection
                 // 3. Put the name and height into the dictionary
                 //      dictionaryVariable[key] = value;
                 //      OR dictionaryVariable.Add(key, value);
+                db.Add(name, height);
 
             }
-            else
+            else // Name DOES exist 
             {
                 Console.WriteLine($"Overwriting {name} with new value.");
                 // 4. Overwrite the current key with a new value
                 //      dictionaryVariable[key] = value;
+                db[name] = height;
             }
         }
         public static void SearchDB(Dictionary<string, int> db)
         {
             Console.Write("Which name are you looking for? ");
-            string input = Console.ReadLine();
+            string input = Console.ReadLine().ToUpper().Trim();
 
             //5. Let's get a specific name from the dictionary
-
-
-
+            if (db.ContainsKey(input))
+            {
+                Console.WriteLine($"{input} is in the database and is {db[input]} inches tall");
+            }
+            else // Input is NOT in the database
+            {
+                Console.WriteLine($"{input} is not in database.");
+            }
         }
     }
 }

@@ -20,7 +20,36 @@ namespace Exercises
          */
         public List<int> BoardingGate(List<int> seatNumberList)
         {
-            return null;
+            List<int> row1 = new List<int>();
+            List<int> row2 = new List<int>();
+            List<int> row3 = new List<int>();
+
+            while (seatNumberList.Count >= 1)
+            {
+                if ((seatNumberList[0] >= 1) && (seatNumberList[0] <= 10))
+                {
+                    row1.Add(seatNumberList[0]);
+                    seatNumberList.RemoveAt(0);
+                }
+                else if ((seatNumberList[0] >= 11) && (seatNumberList[0] <= 20))
+                {
+                    row2.Add(seatNumberList[0]);
+                    seatNumberList.RemoveAt(0);
+                }
+                else if ((seatNumberList[0] >= 21) && (seatNumberList[0] <= 30))
+                {
+                    row3.Add(seatNumberList[0]);
+                    seatNumberList.RemoveAt(0);
+                }
+                else
+                {
+                    seatNumberList.RemoveAt(0);
+                }
+            }
+            row1.AddRange(row2);
+            row1.AddRange(row3);
+            return row1;
         }
+
     }
 }
