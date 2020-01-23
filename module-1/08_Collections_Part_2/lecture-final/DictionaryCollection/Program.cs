@@ -208,7 +208,7 @@ namespace DictionaryCollection
 
             foreach(var kvp in heightDB)
             {
-                Console.WriteLine($"{kvp.Key}...{kvp.Value} inches");
+                Console.WriteLine($"{kvp.Key,-10} {kvp.Value} inches");
             }
         }
 
