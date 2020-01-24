@@ -2,11 +2,22 @@
 
 namespace DogExercise
 {
-    class Program
+    public class Dog
     {
-        static void Main(string[] args)
+        public Dog()
         {
-            Console.WriteLine("Hello World!");
+        }
+        public bool IsSleeping { get; }
+        public string MakeSound()
+        {
+            if (IsSleeping == true)
+            {
+                return "Zzzzz...";
+            }
+            else
+            {
+                return "Woof!";
+            }
         }
     }
 }

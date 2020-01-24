@@ -42,9 +42,9 @@ namespace Exercises
 
             Dictionary<string, string> groups = new Dictionary<string, string>()
             {
-            {"rhino", "Crash" },
-            {"giraffe", "Tower" },
-            {"elephant", "Herd}," },
+            { "rhino", "Crash" },
+            { "giraffe", "Tower" },
+            { "elephant", "Herd}," },
             { "lion", "Pride" },
             { "crow", "Murder" },
             { "pigeon", "Kit" },
