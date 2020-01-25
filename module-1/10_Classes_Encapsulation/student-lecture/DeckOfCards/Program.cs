@@ -19,6 +19,9 @@ namespace DeckOfCards
         {
             // TODO: Declare a Deck to work with 
 
+            Deck deck = new Deck();
+
+
             // Create the menu loop
             bool keepGoing = true;
             while (keepGoing)
@@ -43,13 +46,16 @@ namespace DeckOfCards
                         keepGoing = false;
                         continue;
                     case "1":
-                        // TODO: Create a new deck of cards
+                        // Create a new deck of cards
+                        deck = new Deck();
                         break;
                     case "2":
-                        // TODO: Shuffle the deck
+                        // Shuffle the deck
+                        deck.Shuffle();
                         break;
                     case "3":
-                        // TODO: Deal cards from the deck
+                        // Deal cards from the deck
+                        DealCards(deck);
                         break;
                     default:
                         continue;
@@ -60,6 +66,52 @@ namespace DeckOfCards
             }
 
         }
-        
+        static private void DealCards()
+        {
+            // Deal two hands of five cards each
+            List<Card> hand1 = new List<Card>();
+            List<Card> hand2 = new List<Card>();
+
+            for (int i = 1; i <= 10; i++)
+            {
+                Card card = deck.DealOne();
+
+                if (card == null)
+                {
+                    Console.WriteLine("Not enough cards in the deck!");
+
+                    return;
+                }
+                if (i % 2 == 1)
+                {
+                    hand1.Add(card);
+                }
+                else
+                {
+                    hand2.Add(card);
+                }
+            }
+            //Print the hands
+
+            Console.WriteLine();
+            Console.WriteLine("*************");
+            Console.WriteLine("**Player 1 **");
+            Console.WriteLine("*************");
+            foreach (Card card in hand1)
+            {
+                Console.WriteLine(card.CardName);
+         
+            }
+            //Print the hands
+
+            Console.WriteLine();
+            Console.WriteLine("*************");
+            Console.WriteLine("**Player 2 **");
+            Console.WriteLine("*************");
+            foreach (Card card in hand2)
+            {
+                Console.WriteLine(card.CardName);
+            }
+        }
     }
 }

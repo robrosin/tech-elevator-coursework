@@ -20,8 +20,24 @@ namespace Exercises
         public Dictionary<string, bool> WordMultiple(string[] words)
         {
 
+            Dictionary<string, bool> countWord = new Dictionary<string, bool>();
 
-            return null;
+            foreach (string item in words)
+            {
+                {
+                    if (countWord.ContainsKey(item))
+                        countWord.Add(item, true);
+                }
+                {
+                    if (!(countWord.ContainsKey(item)))
+                        countWord.Add(item, false);
+                }
+            }
+            return countWord;
         }
     }
 }
+
+
+
+

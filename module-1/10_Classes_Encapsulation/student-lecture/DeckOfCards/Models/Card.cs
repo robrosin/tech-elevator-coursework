@@ -12,7 +12,7 @@ namespace DeckOfCards.Models
         #region Private variables
         // NOTE: I added this table to allow us to show suit symbols on the Console
         // TODO: Make the dictionary of values suit symbols static so that only one copy is ever create
-        private Dictionary<string, char> suitSymbols = new Dictionary<string, char>()
+        static private Dictionary<string, char> suitSymbols = new Dictionary<string, char>()
         {
             {"Spades", '\u2660'},
             {"Diamonds", '\u2666'},
@@ -21,7 +21,7 @@ namespace DeckOfCards.Models
         };
 
         // TODO: Make the dictionary of values static so that only one copy is ever create
-        private Dictionary<int, string> valueNames = new Dictionary<int, string>()
+        static private Dictionary<int, string> valueNames = new Dictionary<int, string>()
         {
             {1, "Ace" },
             {2, "Two" },
@@ -49,17 +49,17 @@ namespace DeckOfCards.Models
         /// <summary>
         /// "Spades", "Clubs", "Hearts" or "Diamonds"
         /// </summary>
-        public string Suit { get; set; }
+        public string Suit { get; }
 
         // TODO: Make the Value of the card read-only, so that it can ONLY be set in the constructor
         /// <summary>
         /// Rank of the card 1 = Ace, 13 = King
         /// </summary>
-        public int Value { get; set; }
+        public int Value { get; }
 
         public string ValueName
         {
-            get 
+            get
             {
                 if (valueNames.ContainsKey(this.Value))
                 {
@@ -86,7 +86,7 @@ namespace DeckOfCards.Models
             get
             {
                 // TODO: Add the Symbol to the card name
-                return $"{this.ValueName} of {this.Suit}";
+                return $"{this.Symbol}{this.ValueName} of {this.Suit}";
             }
         }
 
@@ -121,7 +121,10 @@ namespace DeckOfCards.Models
         {
             this.IsFaceUp = !this.IsFaceUp;
         }
-
+        public override string ToString()
+        {
+            return this.CardName;
+        }
         #endregion
 
         #region Constructors
