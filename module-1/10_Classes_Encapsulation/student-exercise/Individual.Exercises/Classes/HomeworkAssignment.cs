@@ -14,11 +14,11 @@ namespace Individual.Exercises.Classes
 
         public string SubmitterName { get; }
 
-        public string LetterGrade  //Derived
+        public string LetterGrade (EarnedMarks / PossibleMarks)  //Derived
         {
             get
             {
-                return "A";
+                return  "A";
             }
         }
         public HomeworkAssignment(int possibleMarks, string submitterName)
