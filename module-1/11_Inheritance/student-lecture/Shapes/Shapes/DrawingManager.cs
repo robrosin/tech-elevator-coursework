@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Shapes.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Shapes
 {
-    class DrawingManager
+    public class DrawingManager
     {
         #region Fields
         /// <summary>
@@ -12,6 +13,7 @@ namespace Shapes
         /// </summary>
         /// 
         // TODO 10 Create the private list of shapes
+        private List<Shape2D> shapes = new List<Shape2D>();
 
         #endregion
 
@@ -95,6 +97,11 @@ Please choose an option: ");
 
             // TODO 12 Display the list of shapes
 
+            foreach (Shape2D shape in shapes)
+            {
+                Success(shape.ToString());
+            }
+
         }
 
         /// <summary>
@@ -104,6 +111,10 @@ Please choose an option: ");
         {
             // TODO 13 Prompt the user for Width, Height, Color and Filled, then add a Rectangle
 
+            int width = GetPositiveInt("Width: ", 1, 30);
+            int height = GetPositiveint("Height", 1, 30);
+            ConsoleColor color = GetColor("Shape color: ");
+            bool isFilled = GetBool("")
 
             Success("New Rectangle was added");
 
@@ -115,100 +126,112 @@ Please choose an option: ");
         private void NewCircle()
         {
             // TODO 14 Prompt the user for Radius, Color and Filled, then create a Circle
+            int radius = GetPositiveInt("Enter radius:", 1, 15);
+            ConsoleColor color = GetColor("Enter the shape color:");
+            bool isFilled = GetBool("Do you want the shape filled?");
 
+            Circle c = new Circle(radius, color, isFilled);
+
+            shapes.Add(c);
 
             Success("New Circle was added");
         }
+
 
         /// <summary>
         /// Draw all the shapes onto the canvas (Console)
         /// </summary>
         public void DrawCanvas()
         {
-            // TODO 15 Loop through the shapes and Draw each one.
+            foreach (Shape2D shape in shapes)
+            {
+                shape.Draw();
+            }
+            {
+                // TODO 15 Loop through the shapes and Draw each one.
 
-            Success("*** End of Display ***");
-        }
-        #endregion
+                Success("*** End of Display ***");
+            }
+            #endregion
 
-        #region Helper Methods
+            #region Helper Methods
 
-        /// <summary>
-        /// Show a prompt and get a Y/N answer from the user.  Y & T == true, everything else == false.
-        /// </summary>
-        /// <param name="prompt">The prompt to display to the user</param>
-        /// <returns>True or false</returns>
-        private bool GetBool(string prompt)
-        {
-            Console.Write(prompt);
-            string input = Console.ReadLine().ToLower();
-            return (input == "y" || input == "t");
-        }
-
-        /// <summary>
-        /// Prompt the user for a color. Must match ConsoleColors, even in case.
-        /// </summary>
-        /// <param name="prompt">Prompt to display to the user</param>
-        /// <returns>A ConsoleColor value</returns>
-        private ConsoleColor GetColor(string prompt)
-        {
-            object colorObject = null;
-            while (colorObject ==  null)
+            /// <summary>
+            /// Show a prompt and get a Y/N answer from the user.  Y & T == true, everything else == false.
+            /// </summary>
+            /// <param name="prompt">The prompt to display to the user</param>
+            /// <returns>True or false</returns>
+            private bool GetBool(string prompt)
             {
                 Console.Write(prompt);
-                if (!Enum.TryParse(typeof(ConsoleColor), Console.ReadLine(), out colorObject))
-                {
-                    Error($"Please enter a color name like Blue, Red, Yellow, DarkCyan...");
-                }
+                string input = Console.ReadLine().ToLower();
+                return (input == "y" || input == "t");
             }
-            return (ConsoleColor)colorObject;
-        }
 
-        /// <summary>
-        /// Prompt the user and get a positive integer
-        /// </summary>
-        /// <param name="prompt">Prompt to display to the user</param>
-        /// <param name="min">User's value must be >= this.</param>
-        /// <param name="max">User's value must be &lt;= this</param>
-        /// <returns>An integer between min and max inclusive</returns>
-        private int GetPositiveInt(string prompt, int min, int max)
-        {
-            int num = 0;
-            while (num <= 0)
+            /// <summary>
+            /// Prompt the user for a color. Must match ConsoleColors, even in case.
+            /// </summary>
+            /// <param name="prompt">Prompt to display to the user</param>
+            /// <returns>A ConsoleColor value</returns>
+            private ConsoleColor GetColor(string prompt)
             {
-                Console.Write(prompt);
-                if (!int.TryParse(Console.ReadLine(), out num) || num < min || num > max)
+                object colorObject = null;
+                while (colorObject == null)
                 {
-                    Error($"Please enter an integer from {min} to {max}.");
-                    num = 0;
+                    Console.Write(prompt);
+                    if (!Enum.TryParse(typeof(ConsoleColor), Console.ReadLine(), out colorObject))
+                    {
+                        Error($"Please enter a color name like Blue, Red, Yellow, DarkCyan...");
+                    }
                 }
+                return (ConsoleColor)colorObject;
             }
-            return num;
-        }
 
-        /// <summary>
-        /// Display a message in the success color
-        /// </summary>
-        /// <param name="msg">Message to display</param>
-        private void Success(string msg)
-        {
-            ConsoleColor color = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(msg);
-            Console.ForegroundColor = color;
-        }
+            /// <summary>
+            /// Prompt the user and get a positive integer
+            /// </summary>
+            /// <param name="prompt">Prompt to display to the user</param>
+            /// <param name="min">User's value must be >= this.</param>
+            /// <param name="max">User's value must be &lt;= this</param>
+            /// <returns>An integer between min and max inclusive</returns>
+            private int GetPositiveInt(string prompt, int min, int max)
+            {
+                int num = 0;
+                while (num <= 0)
+                {
+                    Console.Write(prompt);
+                    if (!int.TryParse(Console.ReadLine(), out num) || num < min || num > max)
+                    {
+                        Error($"Please enter an integer from {min} to {max}.");
+                        num = 0;
+                    }
+                }
+                return num;
+            }
 
-        /// <summary>
-        /// Display a message in the error color
-        /// </summary>
-        /// <param name="msg">Message to display</param>
-        private void Error(string msg)
-        {
-            ConsoleColor color = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(msg);
-            Console.ForegroundColor = color;
+            /// <summary>
+            /// Display a message in the success color
+            /// </summary>
+            /// <param name="msg">Message to display</param>
+            private void Success(string msg)
+            {
+                ConsoleColor color = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(msg);
+                Console.ForegroundColor = color;
+            }
+
+            /// <summary>
+            /// Display a message in the error color
+            /// </summary>
+            /// <param name="msg">Message to display</param>
+            private void Error(string msg)
+            {
+                ConsoleColor color = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(msg);
+                Console.ForegroundColor = color;
+            }
+            #endregion
         }
-        #endregion
     }
-}

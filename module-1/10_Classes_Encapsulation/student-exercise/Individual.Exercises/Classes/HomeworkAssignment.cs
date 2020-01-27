@@ -14,11 +14,29 @@ namespace Individual.Exercises.Classes
 
         public string SubmitterName { get; }
 
-        public string LetterGrade (EarnedMarks / PossibleMarks)  //Derived
+        public string LetterGrade
         {
             get
             {
-                return  "A";
+                double letterGrade = (double)EarnedMarks / (double)PossibleMarks;
+
+                if (letterGrade >= .90)
+                {
+                    return "A";
+                }
+                if (letterGrade >= .80)
+                {
+                    return "B";
+                }
+                if (letterGrade >= .70)
+                {
+                    return "C";
+                }
+                if (letterGrade >= .60)
+                {
+                    return "D";
+                }
+                return "F";
             }
         }
         public HomeworkAssignment(int possibleMarks, string submitterName)
@@ -28,4 +46,3 @@ namespace Individual.Exercises.Classes
         }
     }
 }
-
