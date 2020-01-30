@@ -9,7 +9,7 @@ namespace UoM.Models
         public string UnitName { get; }
         public string UnitsName { get; }
         public double Amount { get; private set; }
-        
+
         /// <summary>
         /// What number, when multiplied by the amount, gives me the length in centimeters?
         /// </summary>
@@ -41,6 +41,5 @@ namespace UoM.Models
             Length otherObj = (Length)obj;
             return this.AmountInCm.CompareTo(otherObj.AmountInCm);
         }
-
     }
 }

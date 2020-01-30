@@ -14,27 +14,21 @@ namespace Shapes.Models
     // TODO 01 Which methods on the Shape2D class should NOT have an implementation?
     // TODO 02: And what does that do to the class?
     // TODO 03: And what happens when we try to derive from this class now?
-    public class Shape2D : IDrawable
+    abstract public class Shape2D : IDrawable
     {
         #region Properties
         public bool IsFilled { get; set; }
 
         public ConsoleColor Color { get; set; }
 
-        virtual public int Area
+        abstract public int Area
         {
-            get
-            {
-                return 0;
-            }
+            get;
         }
 
-        virtual public int Perimeter
+        abstract public int Perimeter
         {
-            get
-            {
-                return 0;
-            }
+            get;
         }
 
         #endregion
@@ -48,7 +42,7 @@ namespace Shapes.Models
 
         #region Methods
 
-        virtual public void Draw() { }
+        abstract public void Draw();
 
         public override string ToString()
         {

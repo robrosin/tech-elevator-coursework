@@ -13,7 +13,7 @@ namespace Shapes
         /// </summary>
         /// 
         // TODO 03 Update the shapes collection to hold IDrawable objects (we should rename it to)
-        private List<Shape2D> shapes = new List<Shape2D>();
+        private List<Shapes2D> drawables = new List<Shapes2D>();
 
         #endregion
 
@@ -85,7 +85,7 @@ Please choose an option: ");
         /// </summary>
         private void ClearCanvas()
         {
-            shapes.Clear();
+            drawables.Clear();
             Success("Canvas was cleared");
         }
 
@@ -97,9 +97,9 @@ Please choose an option: ");
             Success("Shapes:");
 
             // TODO 05 We no longer hold shapes.  We hold "things that are drawable"
-            foreach (Shape2D shape in shapes)
+            foreach (Shapes2D drawable in drawables)
             {
-                Success($"\t{shape.ToString()}");
+                Success($"\t{drawable.ToString()}");
             }
 
         }
@@ -115,7 +115,7 @@ Please choose an option: ");
             bool isFilled = GetBool("Do you want the shape filled? ");
 
             Rectangle r = new Rectangle(width, height, color, isFilled);
-            shapes.Add(r);
+            drawables.Add(r);
 
             Success("New Rectangle was added");
 
@@ -132,7 +132,7 @@ Please choose an option: ");
 
             Circle c = new Circle(radius, color, isFilled);
 
-            shapes.Add(c);
+            drawables.Add(c);
 
 
             Success("New Circle was added");
@@ -174,9 +174,9 @@ Please choose an option: ");
         {
             // TODO 04 We no longer draw shapes.  We draw "things that are drawable"
 
-            foreach (Shape2D shape in shapes)
+            foreach (Shapes2D drawable in drawables)
             {
-                shape.Draw();
+                drawable.Draw();
             }
 
             Success("*** End of Display ***");

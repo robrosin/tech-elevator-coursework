@@ -13,7 +13,8 @@ namespace Shapes.Models
     * 
     * 
     **************************************************/
-    public class Shape2D
+    public class Shape2D : Shapes2D
+
     {
         #region Properties
         public bool IsFilled { get; set; }

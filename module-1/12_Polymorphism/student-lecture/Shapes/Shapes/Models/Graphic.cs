@@ -12,7 +12,7 @@ namespace Shapes.Models
      * TODO 07 Make the Graphic class IDrawable.  Implement the interface.
      * 
      **********************/
-    public class Graphic
+    public class Graphic : IDrawable
     {
         static private Dictionary<string, string> glyphSymbols = new Dictionary<string, string>()
         {
@@ -53,6 +53,14 @@ namespace Shapes.Models
         public override string ToString()
         {
             return $"A {Color} Graphic of glyph '{Name}'";
+        }
+        
+        public void Draw()
+        {
+            ConsoleColor savedColor = Console.ForegroundColor;
+            Console.ForegroundColor = this.Color;
+            Console.WriteLine(glyphSymbol);
+            Console.ForegroundColor = savedColor;
         }
     }
 }

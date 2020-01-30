@@ -12,7 +12,7 @@ namespace Shapes.Models
      * TODO 08 Make the Text class IDrawable.  Implement the interface.
      * 
      **********************/
-    public class Text
+    public class Text : IDrawable
     {
         public string Label { get; set; }
         public ConsoleColor Color { get; set; }
@@ -26,6 +26,13 @@ namespace Shapes.Models
         public override string ToString()
         {
             return $"A {Color} Text Label";
+        }
+        public void Draw()
+        {
+            ConsoleColor savedColor = Console.ForegroundColor;
+            Console.ForegroundColor = this.Color;
+            Console.WriteLine(Label);
+            Console.ForegroundColor = savedColor;
         }
     }
 }
