@@ -12,7 +12,7 @@ namespace TestableClasses.Classes
          Given two strings, a and b, return the result of putting them together in the order abba, 
          e.g. "Hi" and "Bye" returns "HiByeByeHi".
          makeAbba("Hi", "Bye") → "HiByeByeHi"	
-         makeAbba("Yo", "Alice") → "YoAliceAliceYo"	
+         makeAbba("Yo", "Adrian") → "YoAdrianAdrianYo"	
          makeAbba("What", "Up") → "WhatUpUpWhat"	
          */
         public string MakeAbba(string a, string b)
@@ -30,6 +30,10 @@ namespace TestableClasses.Classes
          */
         public string FirstTwo(string str)
         {
+            if (str == null)
+            {
+                return "";
+            }
             if (str.Length < 2)
             {
                 return str;
@@ -39,6 +43,5 @@ namespace TestableClasses.Classes
                 return str.Substring(0, 2);
             }
         }
-
     }
 }

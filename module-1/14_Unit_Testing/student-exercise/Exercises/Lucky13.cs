@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Exercises
+﻿namespace Exercises
 {
     public class Lucky13
     {
@@ -25,6 +19,5 @@ namespace Exercises
             }
             return true;
         }
-
     }
 }
