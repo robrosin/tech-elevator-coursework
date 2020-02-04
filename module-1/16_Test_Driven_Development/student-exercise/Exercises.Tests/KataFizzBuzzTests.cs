@@ -32,7 +32,7 @@ namespace Exercises.Tests
             string result = sum.fizzBuzz(100);
 
             // Assert
-            Assert.AreEqual("100", result);
+            Assert.AreEqual("Buzz", result);
         }
         [TestMethod]
         public void Fizz_FizzBuzzTest()
@@ -67,7 +67,6 @@ namespace Exercises.Tests
 
             // Arrange
             Assert.AreEqual("FizzBuzz", result);
-
         }
         [TestMethod]
         public void Outlier_FizzBuzzTest()
@@ -92,6 +91,78 @@ namespace Exercises.Tests
 
             // Arrange
             Assert.AreEqual("", result);
+        }
+        [TestMethod]
+        public void Three_FizzBuzzTest()
+        {
+            // Arrange
+            KataFizzBuzz sum = new KataFizzBuzz();
+
+            // Act
+            string result = sum.fizzBuzz(3);
+
+            // Assert
+            Assert.AreEqual("Fizz", result);
+        }
+        [TestMethod]
+        public void Thirteen_FizzBuzzTest()
+        {
+            // Arrange
+            KataFizzBuzz sum = new KataFizzBuzz();
+
+            // Act
+            string result = sum.fizzBuzz(13);
+
+            // Assert
+            Assert.AreEqual("Fizz", result);
+        }
+        [TestMethod]
+        public void ThirtyFive_FizzBuzzTest()
+        {
+            // Arrange
+            KataFizzBuzz sum = new KataFizzBuzz();
+
+            // Act
+            string result = sum.fizzBuzz(35);
+
+            // Assert
+            Assert.AreEqual("FizzBuzz", result);
+        }
+        [TestMethod]
+        public void Five_FizzBuzzTest()
+        {
+            // Arrange
+            KataFizzBuzz sum = new KataFizzBuzz();
+
+            // Act
+            string result = sum.fizzBuzz(5);
+
+            // Assert
+            Assert.AreEqual("Buzz", result);
+        }
+        [TestMethod]
+        public void FiftyOne_FizzBuzzTest()
+        {
+            // Arrange
+            KataFizzBuzz sum = new KataFizzBuzz();
+
+            // Act
+            string result = sum.fizzBuzz(51);
+
+            // Assert
+            Assert.AreEqual("Buzz", result);
+        }
+        [TestMethod]
+        public void FiftyThree_FizzBuzzTest()
+        {
+            // Arrange
+            KataFizzBuzz sum = new KataFizzBuzz();
+
+            // Act
+            string result = sum.fizzBuzz(53);
+
+            // Assert
+            Assert.AreEqual("FizzBuzz", result);
         }
     }
 }

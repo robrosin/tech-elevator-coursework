@@ -14,17 +14,17 @@ namespace Exercises
             {
                 return "";
             }
-            if (num % 15 == 0)
+            if ((num % 15 == 0) || (num.ToString().Contains("3") && num.ToString().Contains("5")))
             {
                 return "FizzBuzz";
             }
-            if (num == 3)
-            {
-                return "Fizz";
-            }
-            if (num == 5)
+            if ((num % 5 == 0) || (num.ToString().Contains("5")))
             {
                 return "Buzz";
+            }
+            if ((num % 3 == 0) || (num.ToString().Contains("3")))
+            {
+                return "Fizz";
             }
             return num.ToString();
         }
