@@ -12,8 +12,6 @@ namespace Exercises.Tests
         [TestMethod]
         public void TestBaba()
         {
-            // Arrange
-
             WordCount wc = new WordCount();
             Dictionary<string, int> expectedResult = new Dictionary<string, int>()
 
@@ -23,11 +21,7 @@ namespace Exercises.Tests
             {"sheep", 1 },
         };
 
-            // Act
-
             Dictionary<string, int> actualResult = wc.GetCount(new string[] { "ba", "ba", "black", "sheep" });
-
-            // Assert
 
             CollectionAssert.AreEqual(expectedResult, actualResult);
         }

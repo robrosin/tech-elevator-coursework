@@ -8,6 +8,9 @@ namespace Exercises
 {
     public class KataFizzBuzz
     {
-
+        public string KataFizzBuzz(int number)
+        {
+            return "";
+        }
     }
 }
