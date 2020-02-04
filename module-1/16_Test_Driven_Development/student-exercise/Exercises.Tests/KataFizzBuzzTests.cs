@@ -11,83 +11,87 @@ namespace Exercises.Tests
     public class KataFizzBuzzTests
     {
         [TestMethod]
-        public void OneFizzBuzzTest()
+        public void One_FizzBuzzTest()
         {
-            int number = 1;
-
             // Arrange
-            KataFizzBuzz sum = new KataFizzBuzz(number);
+            KataFizzBuzz sum = new KataFizzBuzz();
 
-            // Add
-            string result = sum.Add(number);
+            // Act
+            string result = sum.fizzBuzz(1);
 
             // Assert
             Assert.AreEqual("1", result);
         }
         [TestMethod]
-        public void FizzFizzBuzzTest()
+        public void OneHundred_FizzBuzzTest()
         {
-            int number = 3;
-
             // Arrange
-            KataFizzBuzz sum = new KataFizzBuzz(number);
+            KataFizzBuzz sum = new KataFizzBuzz();
+
+            // Act
+            string result = sum.fizzBuzz(100);
+
+            // Assert
+            Assert.AreEqual("100", result);
+        }
+        [TestMethod]
+        public void Fizz_FizzBuzzTest()
+        {
+            // Arrange
+            KataFizzBuzz sum = new KataFizzBuzz();
             // Add
-            string result = sum.Add(number);
+            string result = sum.fizzBuzz(3);
 
             // Arrange
             Assert.AreEqual("Fizz", result);
         }
-        public void BuzzFizzBuzzTest()
+        [TestMethod]
+        public void Buzz_FizzBuzzTest()
         {
-            int number = 5;
-
             // Arrange
-            KataFizzBuzz sum = new KataFizzBuzz(number);
+            KataFizzBuzz sum = new KataFizzBuzz();
             // Add
-            string result = sum.Add(number);
+            string result = sum.fizzBuzz(5);
 
             // Arrange
             Assert.AreEqual("Buzz", result);
 
         }
-        public void FizzBuzzFizzBuzzTest()
+        [TestMethod]
+        public void FizzBuzz_FizzBuzzTest()
         {
-            int number = 15;
-
             // Arrange
-            KataFizzBuzz sum = new KataFizzBuzz(number);
+            KataFizzBuzz sum = new KataFizzBuzz();
             // Add
-            string result = sum.Add(number);
+            string result = sum.fizzBuzz(15);
 
             // Arrange
             Assert.AreEqual("FizzBuzz", result);
 
         }
-        public void OutlierFizzBuzzTest()
+        [TestMethod]
+        public void Outlier_FizzBuzzTest()
         {
-            int number = 22;
-
             // Arrange
-            KataFizzBuzz sum = new KataFizzBuzz(number);
+            KataFizzBuzz sum = new KataFizzBuzz();
             // Add
-            string result = sum.Add(number);
+            string result = sum.fizzBuzz(22);
 
             // Arrange
             Assert.AreEqual("22", result);
 
         }
-        public void ZeroFizzBuzzTest()
+        [TestMethod]
+        public void Zero_FizzBuzzTest()
         {
-            int number = 0;
-
             // Arrange
-            KataFizzBuzz sum = new KataFizzBuzz(number);
+            KataFizzBuzz sum = new KataFizzBuzz();
+
             // Add
-            string result = sum.Add(number);
+            string result = sum.fizzBuzz(0);
 
             // Arrange
             Assert.AreEqual("", result);
-
         }
     }
 }

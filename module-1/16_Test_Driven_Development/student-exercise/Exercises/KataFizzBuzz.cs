@@ -8,15 +8,25 @@ namespace Exercises
 {
     public class KataFizzBuzz
     {
-        private int number;
-
-        public KataFizzBuzz(int number)
+        public string fizzBuzz(int num)
         {
-            this.number = number;
-        }
-        public string Add(int number)
-        {
-            return "";
+            if (num < 1 || num > 100)
+            {
+                return "";
+            }
+            if (num % 15 == 0)
+            {
+                return "FizzBuzz";
+            }
+            if (num == 3)
+            {
+                return "Fizz";
+            }
+            if (num == 5)
+            {
+                return "Buzz";
+            }
+            return num.ToString();
         }
     }
 }
