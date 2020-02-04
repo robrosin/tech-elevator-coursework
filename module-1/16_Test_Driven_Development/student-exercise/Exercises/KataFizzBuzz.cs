@@ -8,7 +8,13 @@ namespace Exercises
 {
     public class KataFizzBuzz
     {
-        public string KataFizzBuzz(int number)
+        private int number;
+
+        public KataFizzBuzz(int number)
+        {
+            this.number = number;
+        }
+        public string Add(int number)
         {
             return "";
         }

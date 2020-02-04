@@ -11,8 +11,8 @@ namespace FileAndDirectory.Classes
         {
             while (true)
             {
-                // TODO 01: Get the current working directory dso we can display it.
-                string currentPath = "????";
+                // TODO 01: Get the current working directory so we can display it.
+                string currentPath = Directory.GetCurrentDirectory();
                 Console.Clear();
 
                 Console.WriteLine("Windows Navigator");
@@ -52,8 +52,11 @@ namespace FileAndDirectory.Classes
                 Console.Clear();
 
                 // TODO 02: Get current and root directories here...
-                string currentPath = "????";
-                string root = "??";
+                string currentPath = Directory.GetCurrentDirectory();
+                string root = Directory.GetDirectoryRoot(currentPath);
+
+                // Checks if I am at the root
+
                 bool hasParent = (currentPath != root);
                 Console.WriteLine("Navigate Directories Submenu");
                 Console.WriteLine("----------------------------");
@@ -61,7 +64,7 @@ namespace FileAndDirectory.Classes
                 Console.WriteLine();
 
                 /// TODO 03: Get the list of dirs here...
-                string[] dirs = new string[] { };
+                string[] dirs = Directory.GetDirectories(currentPath);
 
                 if (hasParent)
                 {
@@ -71,7 +74,7 @@ namespace FileAndDirectory.Classes
                 {
 
                     // TODO 04: Get the relative path here...
-                    string relativePath = "????";
+                    string relativePath = Path.GetRelativePath(currentPath, dirs[i]);
                     Console.WriteLine($"{i + 1} - {relativePath}");
 
                 }
@@ -85,18 +88,37 @@ namespace FileAndDirectory.Classes
                 else if (input == "0" && hasParent)
                 {
                     // TODO 05: Calculate parent folder here, and move there...
-
+                    Directory.SetCurrentDirectory("..");
 
 
                 }
                 else
                 {
                     // TODO 06: Navigate to the folder at [selection - 1] here....
+
+                    int selection = 0;
+                    if (int.TryParse(input, out selection))
+                    {
+                        int index = selection - 1;
+                        if (selection <= dirs.Length)
+                        {
+                            Directory.SetCurrentDirectory(dirs[index]);
+                        }
+                        else // It's a number but not a valid index
+                        {
+                            Console.WriteLine("Invalid selection. Please try again.");
+                            Console.ReadLine();
+                        }
+                    }
+                    else // TryParse failed, it wasnt even a number
+                    {
                         Console.WriteLine("Invalid selection. Please try again.");
-                        Console.ReadLine();
+                        Console.WriteLine();
+                    }
                 }
             }
         }
+
 
         private void ListFiles()
         {

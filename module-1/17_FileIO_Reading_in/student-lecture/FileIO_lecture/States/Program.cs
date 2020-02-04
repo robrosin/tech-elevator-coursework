@@ -1,6 +1,7 @@
 ﻿using States.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace States
 {
@@ -10,8 +11,8 @@ namespace States
         static private StateDictionary stateCodes;
         static void Main(string[] args)
         {
-            DoFileIOStuff();
-            return;
+            //DoFileIOStuff();
+            //return;
 
             // The state genie looks up state codes and magically displays information!
             StateGenie();
@@ -26,6 +27,18 @@ namespace States
         private static void DoFileIOStuff()
         {
             // Practice some File IO methods
+            string path = "States.txt";
+
+            using (StreamReader rdr = new StreamReader(path))
+            {
+                int i = 1;
+                while (!rdr.EndOfStream)
+                {
+                    string nextLine = rdr.ReadLine();
+                    Console.WriteLine($"{i} {nextLine}");
+                    i++;
+                }
+            }
         }
 
         private static void StateGenie()
@@ -58,13 +71,16 @@ namespace States
         {
             // TODO 22: Replace this hard-coded data with a call to the StateFileLoader.
 
-            stateCodes = new StateDictionary(
-                new List<State>()
-                {
-                    new State("OH", "Ohio", "Cleveland", "Timberlake"),
-                    new State("FL", "Florida", "Disney World", "Shady Oaks Retirement Community")
-                }
-            );
+            StateFileLoader loader = new StateFileLoader("States.txt");
+            stateCodes = new StateDictionary(loader.StateList);
+
+            //stateCodes = new StateDictionary(
+            //    new List<State>()
+            //    {
+            //        new State("OH", "Ohio", "Cleveland", "Timberlake"),
+            //        new State("FL", "Florida", "Disney World", "Shady Oaks Retirement Community")
+            //    }
+            //);
         }
 
         static public State LookupStateName(string stateCode)
