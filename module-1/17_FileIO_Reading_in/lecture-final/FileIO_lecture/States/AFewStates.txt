@@ -1,0 +1,3 @@
+﻿Alabama|AL|Montgomery|Birmingham
+Alaska|AK|Juneau|Anchorage
+Arizona|AZ|Phoenix|Phoenix
