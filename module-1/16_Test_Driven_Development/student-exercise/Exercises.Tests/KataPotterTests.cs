@@ -67,7 +67,6 @@ namespace Exercises.Tests
             Assert.AreEqual("30.00", result);
         }
     }
-
     internal class GetCostTest
     {
         internal string NumberOfBooks(double v)
