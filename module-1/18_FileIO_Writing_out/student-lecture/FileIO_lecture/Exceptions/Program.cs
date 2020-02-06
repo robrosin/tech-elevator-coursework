@@ -12,6 +12,26 @@ namespace Exceptions
             * try/catch blocks will also catch Exceptions that are 
             * thrown from method called further down the stack 
             */
+            //try
+            //{
+            //    int result = DoSomethingDangerous(8, 0);
+            //    Console.WriteLine($"The result is {result}");
+            //}
+            //catch (DivideByZeroException ex)
+            //{
+            //    Console.WriteLine("Be a hero, don't divide by zero!");
+            //    throw;
+            //}
+
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine($"There was an error: {ex.Message}");
+            //}
+            //finally
+            //{
+            //    Console.WriteLine("And that's all I have to say about that.");
+            //}
+
 
             #endregion
 
@@ -20,8 +40,8 @@ namespace Exceptions
             //Console.ReadLine();
 
 
-            //DoBankAccount();
-            //Console.ReadLine();
+            DoBankAccount();
+            Console.ReadLine();
 
 
             // A template for error-handling...

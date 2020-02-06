@@ -22,6 +22,10 @@ namespace Exceptions.Classes
 
         public void Withdraw(decimal amount)
         {
+            if  (amount > this.Balance)
+            {
+                throw new Exception($"You tried to withdraw {amount:C} but you only have {Balance:C}");
+            }
             this.Balance -= amount;
         }
 
