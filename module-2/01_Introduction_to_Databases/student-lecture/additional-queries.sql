@@ -1,4 +1,5 @@
 -- The name and population of all cities in the USA with a population of greater than 1 million people
+select name, population from 
 
 -- The name and population of all cities in China with a population of greater than 1 million people
 
