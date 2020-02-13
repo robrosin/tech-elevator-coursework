@@ -77,6 +77,8 @@ select max(population) as 'most_populous_city_in_australia'
 from city
 where countrycode = 'aus'
 
+
+
 -- 10. The minimum population of all countries in the world.
 -- (smallest_country_population in world: 50)
 
