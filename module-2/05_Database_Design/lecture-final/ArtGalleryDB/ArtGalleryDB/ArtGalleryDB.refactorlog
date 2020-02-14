@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="1becfc28-8eb7-406d-9135-ba88d36ddba9" ChangeDateTime="02/14/2020 17:02:51">
+    <Property Name="ElementName" Value="[dbo].[Address].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Address]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="AddressId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="55cc4d7d-974e-438a-a786-274db10ef0c8" ChangeDateTime="02/14/2020 17:07:55">
+    <Property Name="ElementName" Value="[dbo].[Customer].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Customer]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CustomerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2a5337f4-ecb4-40d9-9c26-6e478d7fcc81" ChangeDateTime="02/14/2020 17:25:52">
+    <Property Name="ElementName" Value="[dbo].[Artist].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Artist]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArtistId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="43e4c5a0-4b1a-4551-a5b7-e0f0494661a2" ChangeDateTime="02/14/2020 17:26:20">
+    <Property Name="ElementName" Value="[dbo].[Painting].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Painting]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PaintingId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6e006e04-026c-408c-ad08-ba71ce1f6c80" ChangeDateTime="02/14/2020 17:26:53">
+    <Property Name="ElementName" Value="[dbo].[ArtistPainting].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ArtistPainting]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArtistId" />
+  </Operation>
+</Operations>
