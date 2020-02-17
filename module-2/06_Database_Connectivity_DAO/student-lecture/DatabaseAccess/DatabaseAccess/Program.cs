@@ -10,20 +10,30 @@ namespace DatabaseAccess
 {
     class Program
     {
+        private const string CONNECTION_STRING = @"Server=.\SqlExpress;Database=World;Trusted_Connection=True;";
+
         static void Main(string[] args)
         {
             // Execute a Select using a SQL Connection, Command and ExecuteReader.
 
             /*****************************************************************************/
             // Get the list of all cities in the world
-            IList<City> cities = GetAllCities();
+            //IList<City> cities = GetAllCities();
+            //Console.WriteLine(City.GetHeader());
 
-            // Print the list 
-            Console.WriteLine(City.GetHeader());
-            foreach (City city in cities)
-            {
-                Console.WriteLine(city);
-            }
+            //foreach (City city in cities)
+            //{
+            //    Console.WriteLine(city);
+            //}
+
+            //Console.ReadLine();
+
+            //// Print the list 
+            //Console.WriteLine(City.GetHeader());
+            //foreach (City city in cities)
+            //{
+            //    Console.WriteLine(city);
+            //}
 
             Console.Clear();
             /*****************************************************************************/
@@ -31,16 +41,16 @@ namespace DatabaseAccess
             /*****************************************************************************/
             // Get the list of all cities in Ohio
             // Execute a Select with parameters
-            cities = GetAllCitiesInState("Ohio");
-            Console.WriteLine(City.GetHeader());
-            foreach (City city in cities)
-            {
-                Console.WriteLine(city);
-            }
+            //IList<City> cities = GetAllCitiesInState("Ohio");
+            //Console.WriteLine(City.GetHeader());
+            //foreach (City city in cities)
+            //{
+            //    Console.WriteLine(city);
+            //}
 
             /*****************************************************************************/
             // Execute an Update using ExecuteNonQuery
-            UpdateUSPresident("Donald J Trump");
+            //UpdateUSPresident("Dwayne The Rock Johnson");
 
 
             /*****************************************************************************/
@@ -60,28 +70,104 @@ namespace DatabaseAccess
             List<City> cities = new List<City>();
 
             // TODO 02: Add code to list all cities
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
 
+                SqlCommand command = new SqlCommand("Select top 30 * from city", conn);
+                SqlDataReader rdr = command.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    City city = new City()
+                    {
+                        CityId = Convert.ToInt32(rdr["id"]),
+                        Name = Convert.ToString(rdr["name"]),
+                        CountryCode = Convert.ToString(rdr["countrycode"]),
+                        District = Convert.ToString(rdr["district"]),
+                        Population = Convert.ToInt32(rdr["population"])
+                    };
+                    cities.Add(city);
+                }
+            }
             return cities;
         }
-
         private static IList<City> GetAllCitiesInState(string state)
         {
             List<City> cities = new List<City>();
 
             // TODO03: Add code to list all cities in the given district of the USA
 
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand("Select * from city where countrycode = 'USA' and district = @district", conn);
+                cmd.Parameters.AddWithValue("@district", state);
+
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    City city = new City()
+                    {
+                        CityId = Convert.ToInt32(rdr["id"]),
+                        Name = Convert.ToString(rdr["name"]),
+                        CountryCode = Convert.ToString(rdr["countrycode"]),
+                        District = Convert.ToString(rdr["district"]),
+                        Population = Convert.ToInt32(rdr["population"])
+                    };
+                    cities.Add(city);
+                }
+            }
             return cities;
         }
-
         private static void UpdateUSPresident(string president)
         {
             // TODO 04: Add code to update the US President to what was passed into this method
+            string sql = "Update country set headofstate = @headofstate where code = 'USA'";
+
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@headofstate", president);
+                int rowsUpdated = cmd.ExecuteNonQuery();
+                if (rowsUpdated == 0)
+                {
+                    throw new Exception("Not able to update the president");
+
+                }
+                else if (rowsUpdated > 1)
+                {
+                    throw new Exception("Oh crap!");
+                }
+
+            }
             return;
         }
-
         private static void AddCity()
         {
             // TODO 05: Add code to add a new city
+            using (SqlConnection conn = new SqlConnection(CONNECTION_STRING))
+            {
+                conn.Open();
+                string sql =
+                    @"Insert into city (name, countrycode, district, population)
+                    values(@name, @countrycode, @district, @population);
+                    Select @@identity";
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@name", "Timbuktu");
+                cmd.Parameters.AddWithValue("@countrycode", "AUS");
+                cmd.Parameters.AddWithValue("@district", "New South Wales");
+                cmd.Parameters.AddWithValue("@population", 1000);
+
+                int newId = Convert.ToInt32(cmd.ExecuteScalar());
+
+                Console.WriteLine($"Added city");
+            }
+
             return;
         }
 
