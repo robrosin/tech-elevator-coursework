@@ -78,9 +78,9 @@ namespace WorldDB.DAL
                     SqlCommand cmd = new SqlCommand(sql, conn);
 
                     // Execute the command
-                    SqlDataReader reader = cmd.ExecuteReader();
                     cmd.Parameters.AddWithValue("@nameLike", "%" + nameLike + "%");
                     cmd.Parameters.AddWithValue("@continentLike", "%" + continentLike + "%");
+                    SqlDataReader reader = cmd.ExecuteReader();
 
                     // Read each row
                     while (reader.Read())
