@@ -13,7 +13,6 @@ namespace Carts
             Created = created;
             Username = username;
         }
-
         public string CookieValue { get; set; }
         public DateTime Created { get; set; }
         public long Id { get; set; }
