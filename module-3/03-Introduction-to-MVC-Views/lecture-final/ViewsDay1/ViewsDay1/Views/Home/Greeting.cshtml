@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Greeting";
+    string fName = "Mike";
+    string lName = "Morel";
+}
+
+<h1>Greeting</h1>
+@if (DateTime.Now.Hour < 12)
+{
+    <p>Good morning, @fName  @lName! The current time is @DateTime.Now.</p>
+}
+else
+{
+    <p>Good afternoon, @fName  @lName! The current time is @DateTime.Now.</p>
+}
+
+
+<ul>
+    @for (int i = 1; i <= 10; i++)
+    {
+        <li>List item number @i.ToString()</li>
+    }
+</ul>
+
+@for (int r = 0, g = 255; r <= 255; r += 15, g -= 15)
+{
+    <h2 style="color: rgb(@r, @g, 128);">Hello, @fName</h2>
+}

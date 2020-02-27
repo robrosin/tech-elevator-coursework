@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Metric to Imperial</h1>
+<table class="table-striped">
+    <thead>
+        <tr>
+            <td>KPH</td>
+            <td>MPH</td>
+        </tr>
+    </thead>
+    <tbody>
+
+        @for (int kph = 0; kph < 100; kph += 10)
+        {
+            <tr>
+                <td>@kph</td>
+                <td>@(kph * 0.62)</td>
+            </tr>
+        }
+    </tbody>
+</table>

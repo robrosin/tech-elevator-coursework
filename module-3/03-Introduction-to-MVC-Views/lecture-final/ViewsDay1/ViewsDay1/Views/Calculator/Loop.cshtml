@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Loop";
+    int theNumber = (int)ViewData["Num"];
+}
+
+<h1>Loop</h1>
+@for(int i = 1; i <= theNumber; i++)
+{
+    <h1>@i</h1>
+}
+
