@@ -1,0 +1,36 @@
+﻿@model IList<Film>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All Films</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Length</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+
+    @foreach (Film film in Model)
+    {
+        <tr>
+            <td><a asp-controller="Films" asp-action="Detail" asp-route-id="@film.Id">@film.Name</a></td>
+            <td>@film.Length</td>
+            <td>@film.YearReleased</td>
+        </tr>
+    }
+
+</table>
+
+@section sidebar
+{
+    <div>
+        <h3>Did you know...</h3>
+        <p>George Lucas stated that Han Solo was originally intended to be an alien, and Luke Skywalker a girl.</p>
+        <p> They were eventually developed into the fabulous characters we know and love.</p>
+    </div>
+}

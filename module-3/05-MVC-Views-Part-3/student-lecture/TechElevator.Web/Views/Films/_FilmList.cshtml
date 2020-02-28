@@ -1,0 +1,24 @@
+﻿@model IList<Film>
+<table id="listView">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Length</th>
+            <th>Year</th>
+            <th>Series</th>
+        </tr>
+    </thead>
+
+    @foreach (Film film in Model)
+    {
+        <tr>
+            <td><img src="@film.ImageUrl" /></td>
+            <td><a asp-controller="Films" asp-action="Detail" asp-route-id="@film.Id">@film.Name</a></td>
+            <td>@film.Length</td>
+            <td>@film.YearReleased</td>
+            <td>@film.Series</td>
+        </tr>
+    }
+
+</table>
