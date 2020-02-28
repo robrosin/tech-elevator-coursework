@@ -55,7 +55,7 @@ Insert Film Values
 (
 'swvii', 'Episode VII - The Force Awakens',
 'Thirty years after the Battle of Endor, a new threat has risen in the form of the First Order and the villainous Kylo Ren. Meanwhile, Rey, a young scavenger, discovers powers that will change her life -- and possibly save the galaxy.',
-'Sequel', 138, 2015, 'https://lumiere-a.akamaihd.net/v1/images/open-uri20150608-27674-wpda3k_1932e9f5.jpeg?region=0%2C0%2C1280%2C720'
+'Sequel', 138, 2015, 'https://lumiere-a.akamaihd.net/v1/images/01_305e65e1.jpeg?region=0%2C0%2C1560%2C648'
 ),
 (
 'swviii', 'Episode VIII: The Last Jedi', 
