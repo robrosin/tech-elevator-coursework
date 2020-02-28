@@ -9,6 +9,9 @@
 <body>
     <nav>
         <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Films" asp-action="Index">All Films</a></li>
+            <li><a asp-controller="Home" asp-action="About">About</a></li>
         </ul>
     </nav>
     <main>
@@ -16,6 +19,7 @@
     </main>
     <aside>
         @* TODO: Add a RenderSection call here...*@
+        @RenderSection("sidebar", false)
     </aside>
 </body>
 </html>

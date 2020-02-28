@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Echo";
+
+    string word = (string)ViewData["word"];
+    int count = (int)ViewData["count"];
 }
 
 <nav id="page-options">
@@ -10,6 +13,9 @@
     </ul>
 </nav>
 
-@*
-    REPLACE THIS COMMENT SECTION WITH YOUR UNORDERED LIST
-*@
+<ul>
+    @for (int i = count; i > 0; i--) 
+    {
+        <li style="font-size: @(i)px;">@word</li>
+    }
+</ul>

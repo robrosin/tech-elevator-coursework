@@ -1,5 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Fibonacci";
+    int max = (int)ViewData["max"];
+    int prevNum = 0;
+    int currentNum = 1;
 }
 
 <nav id="page-options">
@@ -13,3 +16,14 @@
 @*
     REPLACE THIS COMMENT SECTION WITH YOUR UNORDERED LIST
 *@
+
+<ul>
+
+    @for (int i = 1; i < max; i++)
+    {
+        int fibSum = prevNum + currentNum;
+        prevNum = currentNum;
+        currentNum = fibSum;
+        <li>@fibSum</li>
+    }
+</ul>
