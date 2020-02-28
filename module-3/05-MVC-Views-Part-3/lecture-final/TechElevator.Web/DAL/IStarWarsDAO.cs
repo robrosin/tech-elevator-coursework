@@ -1,0 +1,30 @@
+﻿using TechElevator.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace TechElevator.Web.DAL
+{
+    public interface IStarWarsDAO
+    {
+        /// <summary>
+        /// Returns all of the films.
+        /// </summary>
+        /// <returns></returns>
+        IList<Film> GetFilms();
+
+        /// <summary>
+        /// Returns all of the films matching search criteria
+        /// </summary>
+        /// <returns></returns>
+        IList<Film> GetFilms(string searchFor, string series);
+
+        /// <summary>
+        /// Returns a single film
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Film GetFilm(string id);        
+    }
+}

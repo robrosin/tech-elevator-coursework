@@ -1,0 +1,20 @@
+﻿@model IList<Film>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>All Films</h2>
+@* 
+    // Replace this with a partial view    
+*@
+<partial name="_FilmList" model="Model" />
+
+@section sidebar
+{
+    <div>
+        <h3>Did you know...</h3>
+        <p>George Lucas stated that Han Solo was originally intended to be an alien, and Luke Skywalker a girl.</p>
+        <p> They were eventually developed into the fabulous characters we know and love.</p>
+    </div>
+}
