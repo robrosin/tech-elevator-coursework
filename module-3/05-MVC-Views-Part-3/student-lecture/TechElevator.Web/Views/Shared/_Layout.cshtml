@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-controller="Films" asp-action="Index">All Films</a></li>
+            <li><a asp-controller="Films" asp-action="Search">Search</a></li>
+            <li><a asp-controller="Home" asp-action="About">About</a></li>
+        </ul>
+    </nav>
+    <main>
+        @* TODO: Add code here to check for a Message, and display it (class=alert) if it exists *@
+        @RenderBody()
+    </main>
+    <aside>
+        @* Show the aside / sidebar *@
+        @RenderSection("sidebar", false)
+    </aside>
+</body>
+</html>
