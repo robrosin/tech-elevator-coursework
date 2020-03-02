@@ -1,0 +1,39 @@
+﻿@model IList<Film>
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+<form>
+    <table>
+        <tr>
+            <td>Text:</td>
+            <td><input type="text" name="searchFor" id="searchFor" /></td>
+        </tr>
+        <tr>
+            <td>Series:</td>
+            <td>
+                <select id="series" name="series">
+                    <option value="Original">Original Trilogy</option>
+                    <option value="Prequel">Prequel Trilogy</option>
+                    <option value="Sequel">Sequel Trilogy</option>
+                    <option value="Standalone">Standalone Movie</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Search" /></td>
+        </tr>
+    </table>
+</form>
+
+@if (Model != null)
+{
+    <h2>Results</h2>
+
+    //Display the search results here.  We can copy the table we used in Films/Index to display
+
+    <partial name="_FilmList" model="Model" />
+}
