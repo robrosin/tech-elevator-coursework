@@ -1,0 +1,53 @@
+﻿@model CitySearchVM
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+
+<!-- 
+    This is an HML comment 
+    Here is another line
+    -->
+
+@*<form method="get" action="/city/search">
+    <table>
+        <tr>
+            <td><label for="countryCode">Country Code:</label></td>
+            <td><input type="text" name="countryCode" id="countryCode" value="@Model.CountryCode"/></td>
+        </tr>
+        <tr>
+            <td><label for="district">District:</label></td>
+            <td><input type="text" name="district" id="district" value="@Model.District" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Search!" /></td>
+        </tr>
+    </table>
+</form>*@
+
+<form asp-controller="City" asp-action="Search" method="get">
+    <table>
+        <tr>
+            <td><label asp-for="CountryCode"></label></td>
+            <td><input asp-for="CountryCode" placeholder="Enter country code"/></td>
+        </tr>
+        <tr>
+            <td><label asp-for="District"></label></td>
+            <td><input asp-for="District" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Search!" /></td>
+        </tr>
+    </table>
+
+</form>
+
+<h2>Search Results Country: @Model.CountryCode, District: @Model.District</h2>
+
+<!-- Display search results here -->
+<partial name="_CityList" model="Model.Cities" />
+
+
