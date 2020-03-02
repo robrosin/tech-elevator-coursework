@@ -8,8 +8,12 @@ using TechElevator.Web.Models;
 
 namespace TechElevator.Web.Controllers
 {
+
     public class FilmsController : Controller
     {
+        private const string connectionString = "Server.\\SQLExpress;Database=SWDB;Trusted_Connection=True;";
+        private IStarWarsDAO filmDAO = new StarWarsSqlDAO(connectionString);
+
         // TODO: Declare a private field to hold the Film DAO passed in during construction (Dependency Injection)
         public FilmsController()
         {
@@ -18,7 +22,8 @@ namespace TechElevator.Web.Controllers
         public IActionResult Index()
         {
             // Get a list of all films
-            IStarWarsDAO dao = new MockStarWarsDAO();
+            //IStarWarsDAO dao = new MockStarWarsDAO();
+            //IStarWarsDAO dao = new MockStarWarsDAO(connectionString);
 
             // TODO: Change this DAO to a SQL DAO to get the "production" data
 
@@ -49,6 +54,7 @@ namespace TechElevator.Web.Controllers
             // TODO: Add code to _Layout to look for that message.
             if (search == null || (search.SearchFor == null && search.Series == null))
             {
+                ViewData["Message"] = "Please enter search criteria and press Search";
                 return View();
             }
             // Get List of films that match the search
@@ -59,7 +65,10 @@ namespace TechElevator.Web.Controllers
             IList<Film> films = dao.GetFilms(search.SearchFor, search.Series);
 
             // TODO: If no films were returned, show a "Message" to the use that there were no search results.
-
+            if (films.Count == 0)
+            {
+                ViewData["Message"] = "Your search produced no results. Please try again";
+            }
             return View(films);
         }
     }
