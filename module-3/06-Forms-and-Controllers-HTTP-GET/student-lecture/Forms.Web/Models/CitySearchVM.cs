@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,5 +10,6 @@ namespace Forms.Web.Models
         public string CountryCode { get; set; }
         public string District { get; set; }
         public IList<City> Cities { get; set; }
+
     }
 }

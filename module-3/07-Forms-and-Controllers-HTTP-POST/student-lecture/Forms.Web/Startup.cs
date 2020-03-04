@@ -45,11 +45,14 @@ namespace Forms.Web
             // Then tell the DI Container what "implementation" to create whenever it is asked for a "service"
 
             // This is how you will normally see this implemented...
-//            services.AddTransient<ICityDAO, CitySqlDAO>((x) => new CitySqlDAO(connectionString));
+            //            services.AddTransient<ICityDAO, CitySqlDAO>((x) => new CitySqlDAO(connectionString));
 
             // But this is what is really happening.  A reference to a method which creates the DAO is paased into
             // the AddTransient method.
             services.AddTransient<ICityDAO, CitySqlDAO>(MakeNewCityDAO);
+
+            // Set DI for CountryDAO
+            services.AddTransient<ICountryDAO, CountrySqlDAO>((x) => new CountrySqlDAO(connectionString));
         }
 
         // And here is the method that create a new CitySQLDAO

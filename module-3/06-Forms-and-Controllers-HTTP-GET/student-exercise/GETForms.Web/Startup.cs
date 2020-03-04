@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GETForms.Web.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -30,8 +31,13 @@ namespace GETForms.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.AddTransient<IActorDAO, ActorDAO>(MakeNewDAO);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        }
+        public ActorDAO MakeNewDAO(IServiceProvider x)
+        {
+            string connectionString = Configuration.GetConnectionString("Default");
+            return new ActorDAO(connectionString);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

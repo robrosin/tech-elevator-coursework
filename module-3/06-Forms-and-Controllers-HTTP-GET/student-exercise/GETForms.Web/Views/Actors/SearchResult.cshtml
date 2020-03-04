@@ -1,0 +1,11 @@
+﻿@model IList<Actor>
+@{
+    ViewData["Title"] = "SearchResult";
+}
+
+<h2>SearchResultView</h2>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <p>@Model[i].FirstName @Model[i].LastName</p>
+}

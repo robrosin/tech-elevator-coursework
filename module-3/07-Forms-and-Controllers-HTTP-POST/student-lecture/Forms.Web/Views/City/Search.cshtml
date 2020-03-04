@@ -10,7 +10,6 @@
     Here is another line
     -->
 
-
 @{
     // TODO 01d: Change the input field to a Select. Don't forget the </Select>!!!
     // TODO 01e: Add an empty option
@@ -19,7 +18,12 @@
     <table>
         <tr>
             <td><label asp-for="CountryCode"></label></td>
-            <td><input asp-for="CountryCode" placeholder="Enter country code" /></td>
+            @*<td><input asp-for="CountryCode" /></td>*@
+            <td>
+                <select asp-for="CountryCode" asp-items="Model.CountryList">
+                    <option value="">***Please select a country***</option>
+                </select>
+            </td>
         </tr>
         <tr>
             <td><label asp-for="District"></label></td>

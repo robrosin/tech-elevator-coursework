@@ -1,0 +1,19 @@
+﻿@model Actor
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h2>Last Name:</h2>
+
+<form asp-controller="Actors" asp-action="SearchResult" method="get">
+    <div>
+        <label asp-for="LastName">Last Name</label>
+        <input asp-for="LastName" type="text" placeholder="Enter a Last Name" />
+    </div>
+    <div>
+        <input type="submit" value="Search" />
+    </div>
+</form>
+

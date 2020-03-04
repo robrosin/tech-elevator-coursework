@@ -1,7 +1,20 @@
-﻿
+﻿@model Actor
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Last Name:</h2>
 
+<form asp-controller="Actors" asp-action="SearchResult" method="get">
+    <table>
+        <tr>
+            <td><label asp-for="@Model.LastName">Last Name</label></td>
+            <td><input asp-for="@Model.LastName" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Search" /></td>
+        </tr>
+
+    </table>
+</form>

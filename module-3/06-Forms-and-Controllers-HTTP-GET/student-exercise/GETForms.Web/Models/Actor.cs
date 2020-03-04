@@ -18,3 +18,14 @@ namespace GETForms.Web.Models
         public string LastName { get; set; }
     }
 }
+
+
+//    public Actor() { }
+
+//    public Actor(string firstName, string lastName)
+//    {
+//        FirstName = firstName;
+//        LastName = lastName;
+//    }
+//}
+

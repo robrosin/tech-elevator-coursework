@@ -1,0 +1,23 @@
+﻿@model IList<Customer>
+@{
+    ViewData["Title"] = "SearchResult";
+}
+
+<h2>SearchResult</h2>
+
+<div style="display: flex">
+
+    <p>Name</p>
+    <p>Email</p>
+    <p>Active</p>
+
+    @foreach (Customer customer in Model)
+    {
+        <p>@customer.FirstName @customer.LastName</p>
+        <p>@customer.Email</p>
+        <p>@customer.IsActive</p>
+    }
+
+
+
+</div>
