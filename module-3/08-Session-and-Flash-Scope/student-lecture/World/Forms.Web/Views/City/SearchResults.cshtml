@@ -1,0 +1,9 @@
+﻿@model CitySearchVM
+@{
+    ViewData["Title"] = "SearchResults";
+}
+
+<h2>Search Results Country: @Model.CountryCode, District: @Model.District</h2>
+
+<partial name="_CityList" model="Model.Cities" />
+
