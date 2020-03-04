@@ -59,7 +59,7 @@ namespace Forms.Web.Controllers
         // TODO 03: Implement the PRG pattern to add a new city
         // TODO 03a: Create an Add (GET) method to handle the request and show the form
         // TODO 03b: Create the Add City form to get information from the user
-        // TODO 03c: Create an Add (POST) method to get the form data and call the dao to add a city. Then re-direct to a confirmation page.
+        // TODO 03c: Create an Add (POST) method to get the form data and call the dao to add a city
         // TODO 03d: Create the confirmation (Get) method to read the added city and call the view
         // TODO 03e: Create the Confirmation page to show the successful Add
 
