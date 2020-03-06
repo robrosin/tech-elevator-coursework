@@ -1,0 +1,34 @@
+﻿@model IList<ShoppingCartItem>
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Buy Our Products!</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ShoppingCartItem scItem in Model)
+        {
+        <tr>
+            <td>@scItem.Product.Id</td>
+            <td>@scItem.Product.Name</td>
+            <td>@scItem.Product.Cost</td>
+            <td>
+                <!-- Add a button to add the product to our cart. -->
+                <form asp-controller="Store" asp-action="Index" method="post">
+                    <input type="hidden" asp-for="@scItem.Product.Id" name="Product.Id" />
+                    <input asp-for="@scItem.Quantity" name="Quantity" />
+                    <input type="submit" value="Add to cart" />
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

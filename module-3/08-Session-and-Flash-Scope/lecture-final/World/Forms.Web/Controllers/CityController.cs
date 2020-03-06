@@ -54,12 +54,12 @@ namespace Forms.Web.Controllers
 
 
 
-
+    
 
         // TODO 03: Implement the PRG pattern to add a new city
         // TODO 03a: Create an Add (GET) method to handle the request and show the form
         // TODO 03b: Create the Add City form to get information from the user
-        // TODO 03c: Create an Add (POST) method to get the form data and call the dao to add a city. Then re-direct to a confirmation page.
+        // TODO 03c: Create an Add (POST) method to get the form data and call the dao to add a city
         // TODO 03d: Create the confirmation (Get) method to read the added city and call the view
         // TODO 03e: Create the Confirmation page to show the successful Add
 
@@ -77,7 +77,7 @@ namespace Forms.Web.Controllers
             int newCityId = cityDAO.AddCity(city);
 
             //return Redirect($"/city/ConfirmAdd/{newCityId}");
-            return RedirectToAction("ConfirmAdd", new { id = newCityId });
+            return RedirectToAction("ConfirmAdd", new { id = newCityId});
         }
 
         [HttpGet]
@@ -134,23 +134,7 @@ namespace Forms.Web.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Update(int id)
-        {
-            {
-                City city = cityDAO.GetCityById(id);
-                if (city == null)
-                {
-                    return NotFound();
-                }
-                return View(city);
-            }
-        }
-        [HttpPost]
-        public IActionResult ConfirmUpdate()
-        {
-            return View();
-        }
+
         // TODO 07: Implement flow to UPDATE a city
         // TODO 07a: Create an Update (GET) method to handle the request and show the form
         // TODO 07b: Create the Update City form to show / get information to the user

@@ -1,0 +1,41 @@
+﻿<!-- Need Model -->
+@{
+    ViewData["Title"] = "ViewCart";
+}
+
+@if (TempData.ContainsKey("CartMessage"))
+{
+    <div class="alert alert-info">
+        @TempData["CartMessage"]
+    </div>
+}
+
+<h2>View Cart</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Item</td>
+            <td class="right-justified">Price</td>
+            <td class="right-justified">Qty</td>
+            <td class="right-justified">Ext Price</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ShoppingCartItem item in Model.Items)
+        {
+            <tr>
+                <td></td>
+                <td class="right-justified"></td>
+                <td class="right-justified"></td>
+                <td class="right-justified"></td>
+            </tr>
+        }
+        <tr class="total">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right-justified"></td>
+        </tr>
+    </tbody>
+</table>
+
