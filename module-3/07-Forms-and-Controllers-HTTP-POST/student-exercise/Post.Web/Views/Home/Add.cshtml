@@ -1,0 +1,34 @@
+﻿@model ReviewModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>NEW BOOK REVIEW</h2>
+
+<section class="centeredPanel">
+    <form asp-controller="Home" asp-action="Add" method="post">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td><label asp-for="UserName"></label></td>
+                    <td><input asp-for="UserName" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="Rating"></label></td>
+                    <td><input asp-for="Rating" /></td>
+                </tr>
+                <tr>
+                    <td><label asp-for="ReviewTitle"></label></td>
+                    <td><input asp-for="ReviewTitle" /></td>
+                </tr><tr>
+                    <td><label asp-for="ReviewText"></label></td>
+                    <td><input asp-for="ReviewText" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="Submit" value="Submit!" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</section>

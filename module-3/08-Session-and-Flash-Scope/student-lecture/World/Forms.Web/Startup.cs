@@ -33,8 +33,7 @@ namespace Forms.Web
             });
 
             // TODO 04: Globally add auto-validation for all controllers and post methods
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddMvc(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             /**** DEPENDENCY INJECTION *****/
             // First, find the connection string in AppSettings.json using the Configuration object
@@ -43,7 +42,7 @@ namespace Forms.Web
             // Then tell the DI Container what "implementation" to create whenever it is asked for a "service"
 
             // This is how you will normally see this implemented...
-//            services.AddTransient<ICityDAO, CitySqlDAO>((x) => new CitySqlDAO(connectionString));
+            //            services.AddTransient<ICityDAO, CitySqlDAO>((x) => new CitySqlDAO(connectionString));
 
             // But this is what is really happening.  A reference to a method which creates the DAO is paased into
             // the AddTransient method.

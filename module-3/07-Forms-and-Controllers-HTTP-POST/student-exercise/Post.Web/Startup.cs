@@ -8,11 +8,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Post.Web.DAL;
 
 namespace Post.Web
 {
     public class Startup
     {
+        private readonly string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=squirrels;Integrated Security=True";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +34,7 @@ namespace Post.Web
             });
 
 
+            services.AddTransient<IReviewDAO, ReviewSqlDAO>((x) => new ReviewSqlDAO(connectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

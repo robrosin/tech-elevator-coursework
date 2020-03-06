@@ -11,17 +11,44 @@ namespace Post.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private IReviewDAO reviewDAO;
 
-        // GET: Home
+        public HomeController(IReviewDAO reviewDAO)
+        {
+            this.reviewDAO = reviewDAO;
+        }
+
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
-        }        
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            IList<ReviewModel> review = reviewDAO.GetAllReviews();
+            return View(review);
         }
+
+        //[HttpPost]
+        //public IActionResult SaveReview(ReviewModel post)
+        //{
+        //    int newReviewId = reviewDAO.SaveReview(post);
+
+        //    return RedirectToAction("Index");
+        //}
+        [HttpPost]
+        public IActionResult Add(ReviewModel review)
+        {
+            int newReviewId = reviewDAO.SaveReview(review);
+
+            //return Redirect($"/city/ConfirmAdd/{newCityId}");
+            return RedirectToAction("ConfirmAdd", new { id = newReviewId });
+        }
+
+
+
+
+
+        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        //public IActionResult Error()
+        //{
+        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        //}
     }
 }

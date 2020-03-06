@@ -1,6 +1,28 @@
-﻿
+﻿@model IList<ReviewModel>
+
 @{
     ViewData["Title"] = "Home Page";
 }
+<section class="centeredPanel">
+    <h2>PAST REVIEWS</h2>
+        <a asp-controller="Home" asp-action="Add">Submit A Review</a> 
 
 
+    <form asp-controller="Home" asp-action="Index" method="get">
+        <table>
+            @foreach (var review in Model)
+            {
+                <tr>
+
+                    <td>@review.ReviewTitle   @review.Rating</td>
+                </tr>
+                <tr>
+                    <td>by @review.UserName on @review.ReviewDate</td>
+                </tr>
+                <tr>
+                    <td>@review.ReviewText</td>
+                </tr>
+            }
+        </table>
+    </form>
+</section>

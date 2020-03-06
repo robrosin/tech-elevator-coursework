@@ -51,7 +51,67 @@ namespace SessionCart.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            string lastTimeHere = HttpContext.Session.GetString("LastAccess");
+
+            if (String.IsNullOrEmpty(lastTimeHere))
+            {
+                // Say Welcome to the user
+                ViewData["Message"] = "Welcome!";
+            }
+            else
+            {
+                // Convert from a string back to a Datetime
+                DateTime last = DateTime.Parse(lastTimeHere);
+
+                // Calculate the time since user was last here and display to user
+                double secondsSinceLastAccess = (DateTime.Now - last).TotalSeconds;
+
+                ViewData["Message"] = $"Welcome back! You were last here {secondsSinceLastAccess:N2} ago!";
+            }
+
+            // Write the NEW LastAccess time to session so we can get it next time
+            HttpContext.Session.SetString("LastAccess", DateTime.Now.ToString());
+
+            // Get the Catalog of products
+            IList<Product> products = productDAO.GetProducts();
+
+            return View(products);
+        }
+
+        [HttpPost]
+        public IActionResult Index(Product product)
+        {
+            product = productDAO.GetProduct(product.Id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            // Get the cart from session if it exists
+
+            ShoppingCart cart;
+            string json = HttpContext.Session.GetString("cart");
+
+            if (String.IsNullOrEmpty(json))
+            {
+                // Need a new cart
+
+                cart = new ShoppingCart();
+            }
+            else
+            {
+                cart = JsonConvert.DeserializeObject<ShoppingCart>(json);
+            }
+
+            cart.AddToCart(product, 1);
+
+            // Save the cart to session so we can get it next time
+            json = JsonConvert.SerializeObject(cart); // Returns a string that respresents the cart object
+
+            HttpContext.Session.SetString("cart", json);
+
+            return RedirectToAction("Index");
         }
     }
 }
