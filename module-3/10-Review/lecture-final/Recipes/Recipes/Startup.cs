@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Forms.Web.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Recipes.DAL;
 
-namespace Forms.Web
+// TODO: All the great things in startup, like DI, autovalidate, setup session, etc.
+
+
+namespace Recipes
 {
     public class Startup
     {
@@ -20,11 +24,11 @@ namespace Forms.Web
         }
 
         public IConfiguration Configuration { get; }
-        private string connectionString;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Enable Cookies
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -32,37 +36,24 @@ namespace Forms.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            // Globally add auto-validation for all controllers and post methods
-            services.AddMvc( options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            /********* Session Setup  *************/
+            // Setup Session
             services.AddDistributedMemoryCache();
-            services.AddSession();
+            services.AddSession(options =>
+            {
+                // Sets session expiration to 20 minuates
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.HttpOnly = true;
+            });
 
-            /**** DEPENDENCY INJECTION *****/
-            // First, find the connection string in AppSettings.json using the Configuration object
-            connectionString = Configuration.GetConnectionString("Default");
 
-            // Then tell the DI Container what "implementation" to create whenever it is asked for a "service"
+            // Setup Dependency Injection for DAOs
+            string connectionString = Configuration.GetConnectionString("Default");
+            services.AddTransient<IUserDAO>(m => new UserSqlDAO(connectionString));
+            services.AddTransient<IRecipeDAO>(m => new RecipeSqlDAO(connectionString));
 
-            // This is how you will normally see this implemented...
-//            services.AddTransient<ICityDAO, CitySqlDAO>((x) => new CitySqlDAO(connectionString));
-
-            // But this is what is really happening.  A reference to a method which creates the DAO is paased into
-            // the AddTransient method.
-            services.AddTransient<ICityDAO, CitySqlDAO>(MakeNewCityDAO);
-
-            // Setup DI for CountryDAO
-            services.AddTransient<ICountryDAO, CountrySqlDAO>((x) => new CountrySqlDAO(connectionString));
-
+            // Globally add auto-validation for all controllers and post methods
+            services.AddMvc(options => options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-
-        // And here is the method that create a new CitySQLDAO (factory)
-        public CitySqlDAO MakeNewCityDAO(IServiceProvider x)
-        {
-            return new CitySqlDAO(connectionString);
-        }
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -74,12 +65,15 @@ namespace Forms.Web
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            /********* Session Setup  *************/
+            // Turn on Session
             app.UseSession();
 
             app.UseMvc(routes =>
