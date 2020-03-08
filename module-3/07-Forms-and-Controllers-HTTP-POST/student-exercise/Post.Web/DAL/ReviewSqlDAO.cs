@@ -116,13 +116,13 @@ namespace Post.Web.DAL
                 {
                     conn.Open();
 
-                    string sql = $"INSERT INTO squirrels(username, rating, review_title, review_text, review_date) VALUES(@username, @rating, @review_title, @review_text, GetDate()); Select @@Identity; ";
+                    string sql = $"INSERT INTO reviews(username, rating, review_title, review_text, review_date) VALUES(@username, @rating, @review_title, @review_text, GetDate()); Select @@Identity; ";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@username", review.UserName);
                     cmd.Parameters.AddWithValue("@rating", review.Rating);
                     cmd.Parameters.AddWithValue("@review_title", review.ReviewTitle);
                     cmd.Parameters.AddWithValue("@review_text", review.ReviewText);
-                    cmd.Parameters.AddWithValue("@review_date", review.ReviewDate);
+                    cmd.Parameters.AddWithValue("@review_date", DateTime.Now);
 
                     return Convert.ToInt32(cmd.ExecuteScalar());
                 }

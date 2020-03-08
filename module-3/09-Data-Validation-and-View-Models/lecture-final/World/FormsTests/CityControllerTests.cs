@@ -19,16 +19,16 @@ namespace FormsTests
         public void TestIndex()
         {
             //// Arrange
-            //CityMockDAO cityDAO = new CityMockDAO();
-            //CountryMockDAO countryDAO = new CountryMockDAO();
-            //CityController controller = new CityController(cityDAO, countryDAO);
+            CityMockDAO cityDAO = new CityMockDAO();
+            CountryMockDAO countryDAO = new CountryMockDAO();
+            CityController controller = new CityController(cityDAO, countryDAO);
 
             //// Act
-            //IActionResult result = controller.Index();
+            IActionResult result = controller.Index();
 
             //// Assert
-            //ViewResult vr = result as ViewResult;
-            //Assert.IsNotNull(vr, "Index did not return a ViewResult");
+            ViewResult vr = result as ViewResult;
+            Assert.IsNotNull(vr, "Index did not return a ViewResult");
 
         }
 

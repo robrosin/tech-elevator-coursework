@@ -19,10 +19,16 @@ namespace Post.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             IList<ReviewModel> review = reviewDAO.GetAllReviews();
             return View(review);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View(new ReviewModel());
         }
 
         //[HttpPost]
@@ -38,11 +44,9 @@ namespace Post.Web.Controllers
             int newReviewId = reviewDAO.SaveReview(review);
 
             //return Redirect($"/city/ConfirmAdd/{newCityId}");
-            return RedirectToAction("ConfirmAdd", new { id = newReviewId });
+            return RedirectToAction("Index");
+
         }
-
-
-
 
 
         //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
