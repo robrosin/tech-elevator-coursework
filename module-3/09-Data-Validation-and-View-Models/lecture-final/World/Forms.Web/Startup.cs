@@ -57,7 +57,7 @@ namespace Forms.Web
 
         }
 
-        // And here is the method that create a new CitySQLDAO
+        // And here is the method that create a new CitySQLDAO (factory)
         public CitySqlDAO MakeNewCityDAO(IServiceProvider x)
         {
             return new CitySqlDAO(connectionString);

@@ -26,10 +26,12 @@ namespace Validation.Web.Models
 
         [Required(ErrorMessage = "The password must be at least 8 characters long")]
         [StringLength(20, MinimumLength = 8)]
+        [DataType(DataType.Password)]
         public string Password { get; set; } // Must be more than 8 characters / REQ
 
         [Required]
         [Compare("Password", ErrorMessage = "Passwords do not match")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; } // Must match Password
 
         [Required]
@@ -50,6 +52,9 @@ namespace Validation.Web.Models
             ConfirmPassword = confirmPassword;
             BirthDate = birthDate;
             NumberOfTickets = numberOfTickets;
+        }
+        public RegistrationViewModel()
+        {
         }
     }
 }
