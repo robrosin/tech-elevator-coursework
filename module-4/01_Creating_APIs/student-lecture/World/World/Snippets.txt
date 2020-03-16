@@ -1,0 +1,59 @@
+﻿/********** WorldAPI: Startup ********************/
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using WorldLib.DAL;
+
+/******************/
+// ConfigureServices
+        public void ConfigureServices(IServiceCollection services)
+        {
+            //TODO: Add Swashbuckle.aspnetcore package, and configure Swagger to look at the XmlComments above our methods
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WorldDB API", Version = "v1" });
+            });
+
+            /**** DEPENDENCY INJECTION *****/
+            // First, find the connection string in AppSettings.json using the Configuration object
+            string connectionString = Configuration.GetConnectionString("World");
+
+            // Setup DI for CityDAO
+            services.AddTransient<ICityDAO, CitySqlDAO>((x) => new CitySqlDAO(connectionString));
+
+            services.AddControllers();
+        }
+
+/******************/
+// Configure
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            //Adding Swagger and SwaggerUI
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WorldDB API v1");
+            });
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+        }
+
