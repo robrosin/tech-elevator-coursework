@@ -10,34 +10,51 @@
  * They don't have a return type and the naming convention is camel-case.
  */
 function variables() {
-  // Declares a variable where the value cannot be changed
-  const daysInWeek = 7;
-  printValueAndType("daysInWeek", daysInWeek);
+    // Declares a variable where the value cannot be changed
+    const daysInWeek = 7;
+    printValueAndType("daysInWeek", daysInWeek);
 
-  // Can I change it?
+    // Can I change it?
 
-  console.log(`There are ${daysInWeek} days in the week`)
+    // daysInWeek = 8; // runtime error because daysInWeek is a const
 
-  // Declares a variable those value can be changed
+    console.log(`There are ${daysInWeek} days in the week`)
 
-  // Can I change it?
+    // Declares a variable those value can be changed
 
-  // Declares a variable that will always be an array (prime numbers)
+    let daysInMonth = 31;
 
-  // Can I change the values in the array?
+    // Can I change it?
+    daysInMonth--;
 
-  // Can I re-assign the variable?
-  //  prime = "prime numbers";
 
-  // Declare variable obj, but don't define it. Print i=out its value and type
+    // Declares a variable that will always be an array (prime numbers)
+    const primes = [1, 2, 3, 5, 7, 9, 11];
+    // console.table(primes);
 
-  // Now set it to null, and print out its value and type
+    // Can I change the values in the array?
+    primes[6] = 13;
+    // console.table(primes);
 
-  // Return value can be any type.  If there is nothing returned, the value / type is undefined
+    // Can I re-assign the variable?
+    // primes = [2, 4, 6]; YOU CANNOT
+
+    //  prime = "prime numbers";
+
+    // Declare variable obj, but don't define it. Print i=out its value and type
+    let obj;
+    printValueAndType("obj", obj);
+
+    // Now set it to null, and print out its value and type
+    obj = null;
+    printValueAndType("obj", obj);
+
+    // Return value can be any type.  If there is nothing returned, the value / type is undefined
+    return 0;
 }
 
 function printValueAndType(name, obj) {
-  console.log(`${name}: value is ${obj}, type is ${typeof (obj)}`);
+    console.log(`${name}: value is ${obj}, type is ${typeof (obj)}`);
 }
 
 /**
@@ -47,8 +64,8 @@ function printValueAndType(name, obj) {
  * @param {Number} param2 The second number to display
  */
 function printParameters(param1, param2) {
-  console.log(`The value of param1 is ${param1}, and the type is ${typeof (param1)}`);
-  console.log(`The value of param2 is ${param2}, and the type is ${typeof (param2)}`);
+    console.log(`The value of param1 is ${param1}, and the type is ${typeof (param1)}`);
+    console.log(`The value of param2 is ${param2}, and the type is ${typeof (param2)}`);
 }
 
 /**
@@ -59,11 +76,11 @@ function printParameters(param1, param2) {
  * @param {Object} y
  */
 function equality(x, y) {
-  console.log(`x is ${typeof x}`);
-  console.log(`y is ${typeof y}`);
+    console.log(`x is ${typeof x}`);
+    console.log(`y is ${typeof y}`);
 
-  console.log(`x == y : ${x == y}`); // true
-  console.log(`x === y : ${x === y}`); // false
+    console.log(`x == y : ${x == y}`); // true
+    console.log(`x === y : ${x === y}`); // false
 }
 
 /**
@@ -73,11 +90,11 @@ function equality(x, y) {
  * @param {Object} x The object to check for truthy or falsy,
  */
 function falsy(x) {
-  if (x) {
-    console.log(`${x} is truthy`);
-  } else {
-    console.log(`${x} is falsy`);
-  }
+    if (x) {
+        console.log(`${x} is truthy`);
+    } else {
+        console.log(`${x} is falsy`);
+    }
 }
 
 /**
@@ -86,17 +103,38 @@ function falsy(x) {
  * arrays can hold multiple types
  */
 function arrays() {
-  // Create an empty array
+    // Create an empty array
+    let junk = [];
+    console.table(junk);
 
-  // Add some elements by pushing
+    // Add some elements by pushing
+    junk.push("Mike");
+    console.table(junk);
 
-  // Add some more elements sparsely
+    // Add some more elements sparsely
+    junk[3] = 65;
+    junk[4] = {
+        name: "Andrew",
+        age: 42
+    }
+    console.table(junk);
 
-  // Use the table command to print the results
+    console.log(junk[2]);
+    console.log(junk.length);
 
-  // Loop through the array and print all elements
+    junk[99] = "Craig";
+    console.log(junk.length);
 
-  return 0;
+    // Use the table command to print the results
+    console.log("***************************");
+
+    // Loop through the array and print all elements
+    for (let i = 0; i < junk.length; i++) {
+        if (junk[i] !== undefined) {
+            console.log(junk[i]);
+        }
+    }
+    return 0;
 }
 
 /**
@@ -106,33 +144,35 @@ function arrays() {
     - or they can be functions
 */
 function objects() {
-  const person = {
-    firstName: "Bill",
-    lastName: "Lumbergh",
-    age: 42,
-    employees: [
-      "Peter Gibbons",
-      "Milton Waddams",
-      "Samir Nagheenanajar",
-      "Michael Bolton"
-    ],
-    introduce: function () {
-      return `Hi, my name is ${this.firstName} ${this.lastName}. I am (${this.age}) years old.`;
-    }
-  };
+    const person = {
+        firstName: "Bill",
+        lastName: "Lumbergh",
+        age: 42,
+        employees: [
+            "Peter Gibbons",
+            "Milton Waddams",
+            "Samir Nagheenanajar",
+            "Michael Bolton"
+        ],
+        introduce: function() {
+            return `Hi, my name is ${this.firstName} ${this.lastName}. I am (${this.age}) years old.`;
+        }
+    };
 
-  // Log the object
+    // Log the object
+    console.log(person);
 
-  // Log the first and last name
+    // Log the first and last name
 
-  // Change a property
+    // Change a property
+    person.firstName = "William";
+    console.log(person);
 
-  console.log(person);
+    // Log each employee
 
-  // Log each employee
-
-  // Call the object function introduce
-
+    // Call the object function introduce
+    let s = person.introduce();
+    console.log(s);
 }
 
 /*
@@ -146,11 +186,11 @@ earlier ones are overridden and the most recent one will be used.
 */
 
 function Add(num1, num2) {
-  return num1 + num2;
+    return num1 + num2;
 }
 
 function Add(num1, num2, num3) {
-  return num1 + num2 + num3;
+    return num1 + num2 + num3;
 }
 
 /*
@@ -162,12 +202,12 @@ A built-in `Math` object has properties and methods for mathematical constants a
 */
 
 function mathFunctions() {
-  console.log("Math.PI : " + Math.PI);
-  console.log("Math.LOG10E : " + Math.LOG10E);
-  console.log("Math.abs(-10) : " + Math.abs(-10));
-  console.log("Math.floor(1.99) : " + Math.floor(1.99));
-  console.log("Math.ceil(1.01) : " + Math.ceil(1.01));
-  console.log("Math.random() : " + Math.random());
+    console.log("Math.PI : " + Math.PI);
+    console.log("Math.LOG10E : " + Math.LOG10E);
+    console.log("Math.abs(-10) : " + Math.abs(-10));
+    console.log("Math.floor(1.99) : " + Math.floor(1.99));
+    console.log("Math.ceil(1.01) : " + Math.ceil(1.01));
+    console.log("Math.random() : " + Math.random());
 }
 
 /*
@@ -179,41 +219,41 @@ The string data type has a lot of properties and methods similar to strings in J
 */
 
 function stringFunctions(value) {
-  console.log(`.length -  ${value.length}`);
-  console.log(`.endsWith('World') - ${value.endsWith("World")}`);
-  console.log(`.startsWith('Hello') - ${value.startsWith("Hello")}`);
-  console.log(`.indexOf('Hello') - ${value.indexOf("Hello")}`);
+    console.log(`.length -  ${value.length}`);
+    console.log(`.endsWith('World') - ${value.endsWith("World")}`);
+    console.log(`.startsWith('Hello') - ${value.startsWith("Hello")}`);
+    console.log(`.indexOf('Hello') - ${value.indexOf("Hello")}`);
 
-  /*
-    Other Methods
-        - split(string)
-        - substring(number, number)
-        - toLowerCase()
-        - trim()
-        - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
-    */
-   // Split and join
+    /*
+      Other Methods
+          - split(string)
+          - substring(number, number)
+          - toLowerCase()
+          - trim()
+          - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String
+      */
+    // Split and join
 
 }
 
 function quirks() {
-  // Adding and subtracting strings as numbers
-  console.log(`'5' - '2' = ${'5' - '2'}`);
-  console.log(`'5' + '2' = ${'5' + '2'}`);
+    // Adding and subtracting strings as numbers
+    console.log(`'5' - '2' = ${'5' - '2'}`);
+    console.log(`'5' + '2' = ${'5' + '2'}`);
 
-  // Truthiness
-  console.log(`0 == false = ${0 == false}`);
-  console.log(`1 == true = ${1 == true}`);
-  console.log(`2 == true = ${2 == true}`);
+    // Truthiness
+    console.log(`0 == false = ${0 == false}`);
+    console.log(`1 == true = ${1 == true}`);
+    console.log(`2 == true = ${2 == true}`);
 
-  console.log(`2 + true = ${2 + true}`);
+    console.log(`2 + true = ${2 + true}`);
 
-  // undefined variables become global. 'use strict' to create an error
-  x = 50;
+    // undefined variables become global. 'use strict' to create an error
+    x = 50;
 
-  console.log([2, 11, 21, 1, 4, 32].sort());
+    console.log([2, 11, 21, 1, 4, 32].sort());
 
-  console.log(`Not-a-number is a ${typeof (NaN)}`);
-  console.log(`(NaN === NaN) = ${(NaN === NaN)}`);
+    console.log(`Not-a-number is a ${typeof (NaN)}`);
+    console.log(`(NaN === NaN) = ${(NaN === NaN)}`);
 
 }
