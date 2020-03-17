@@ -1,0 +1,61 @@
+﻿@model PuppyViewModel
+@{
+    ViewData["Title"] = "Puppies!!!";
+}
+
+<h1>Puppies!!!</h1>
+<fieldset>
+    <legend>Add a new puppy</legend>
+    <form class="form" method="POST">
+        <div class="form-group">
+            <input class="form-control" asp-for="NewPuppy.Name">
+            <span class="error" asp-validation-for="NewPuppy.Name"></span>
+        </div>
+        <div class="form-group">
+            <input class="form-control" asp-for="NewPuppy.Weight">
+            <span class="error" asp-validation-for="NewPuppy.Weight"></span>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="radio" asp-for="NewPuppy.Gender" value="Male"> Male
+            </label>
+            <label>
+                <input type="radio" asp-for="NewPuppy.Gender" value="Female"> Female
+            </label>
+            <span class="error" asp-validation-for="NewPuppy.Gender"></span>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" asp-for="NewPuppy.PaperTrained" value="true"> Paper Trained
+            </label>
+            <span class="error" asp-validation-for="NewPuppy.PaperTrained"></span>
+        </div>
+        <input class="btn btn-dark" name="submit" value="Save Puppy!" type="submit" />
+    </form>
+</fieldset>
+<hr />
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Weight</th>
+        <th>Gender</th>
+        <th>Paper Trained?</th>
+    </tr>
+    @foreach (Puppy puppy in Model.Puppies)
+    {
+    <tr>
+        <td>
+            <a asp-action="Detail" asp-route-id="@puppy.Id">@puppy.Name</a>
+        </td>
+        <td>
+            @puppy.Weight lbs
+        </td>
+        <td>
+            @puppy.Gender
+        </td>
+        <td>
+            @(puppy.PaperTrained ? "Yes" : "No")
+        </td>
+    </tr>
+    }
+</table>
