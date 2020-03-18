@@ -232,4 +232,13 @@ function createObject() {
         lastName: "Rosin",
         age: 35,
     }
+    return person;
 }
+
+// function createObject() {
+//     return {
+//         firstName: "Rob",
+//         lastName: "Rosin",
+//         age: 35,
+//     }
+// }
