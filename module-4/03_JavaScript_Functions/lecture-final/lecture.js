@@ -254,12 +254,20 @@ function sumAllNumbers(numbersToSum) {
 
 
 let people = [
-  { name: "Andrew", age: 42, height: 76 },
-  { name: "Richard", age: 57, height: 74 },
-  { name: "Rachel", age: 36, height: 67 },
-  { name: "Chris", age: 32, height: 67 },
-  { name: "Amy", age: 39, height: 62 },
+  { id: 1, name: "Andrew", age: 42, height: 76 },
+  { id: 2, name: "Richard", age: 57, height: 74 },
+  { id: 3, name: "Rachel", age: 36, height: 67 },
+  { id: 4, name: "Chris", age: 32, height: 67 },
+  { id: 5, name: "Amy", age: 39, height: 62 },
 ];
+
+function mapPeople(people){
+  return people.map(
+    (person) => {
+      return {key: person.id, val: person.name};
+    }
+  );
+}
 
 
 // List all the people using foreach
