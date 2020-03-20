@@ -1,22 +1,29 @@
-/*
- * Document this function
+/**
+ * Takes a month, day and hemisphere and returns whether or not it is summer 
+ * for that month and day in that hemisphere
+ * 
+ * @param {number} month of the year
+ * @param {number} day of the month
+ * @param {string} hemisphere 
+ * @returns {boolean} true if it is summer
  */
+
 function isSummer(month, day = 1, hemisphere = 'northern') {
-  if (month === 7 || month === 8) {
-    return hemisphere === 'northern';
-  } else if (month === 6 && day >= 20) {
-    return hemisphere === 'northern';
-  } else if (month === 9 && day <= 20) {
-    return hemisphere === 'northern';
-  } else if (month === 1 || month === 2) {
-    return hemisphere === 'southern';
-  } else if (month === 12 && day >= 20) {
-    return hemisphere === 'southern';
-  } else if (month === 3 && day <= 20) {
-    return hemisphere === 'southern';
-  } else {
-    return false;
-  }
+    if (month === 7 || month === 8) {
+        return hemisphere === 'northern';
+    } else if (month === 6 && day >= 20) {
+        return hemisphere === 'northern';
+    } else if (month === 9 && day <= 20) {
+        return hemisphere === 'northern';
+    } else if (month === 1 || month === 2) {
+        return hemisphere === 'southern';
+    } else if (month === 12 && day >= 20) {
+        return hemisphere === 'southern';
+    } else if (month === 3 && day <= 20) {
+        return hemisphere === 'southern';
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -41,6 +48,8 @@ function isSummer(month, day = 1, hemisphere = 'northern') {
  * @returns {boolean} true if they are admitted
  */
 
+// function isAdmitted(gpa, sat, rec) 
+
 /**
  * Write a function called useParameterToFilterArray so that it takes an anonymous
  * function and uses that in `unfilteredArray` filter function. Return the result.
@@ -48,7 +57,15 @@ function isSummer(month, day = 1, hemisphere = 'northern') {
  * @param {function} filterFunction the function to filter with
  * @returns {number[]} the filtered array
  */
+
 let unfilteredArray = [1, 2, 3, 4, 5, 6];
+
+function useParameterToFilterArray(filterFunction) {
+    filteredArray = unfilteredArray.filter(filterFunction);
+
+    return filteredArray;
+}
+
 
 /**
  * Write a function called makeNumber to take two strings
@@ -63,6 +80,12 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @returns {number} the resultant number
  */
 
+function makeNumber(a, b = '') {
+    return parseFloat(a.concat(b));
+}
+
+//parsefloat
+
 /**
  * Write a function called addAll that takes an unknown number of parameters
  * and adds them all together. Return the result.
@@ -71,10 +94,37 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * @returns {number} the sum of all the parameters (or arguments)
  */
 
-/*
+function addAll() {
+    let add = 0;
+    for (let i = 0; i < arguments.length; i++) {
+        arg = arguments[i];
+        if (typeof(arg) === "number") {
+            add += arguments[i];
+        }
+    }
+    return add;
+}
+
+/** 
  * Write and document a function called makeHappy that takes
- * an array and prepends 'Happy ' to the beginning of all the
+ * an array and prepends 'Happy' to the beginning of all the
  * words and returns them as a new array. Use the `map` function.
+ *
+ * @param {array} an array of strings
+ * @returns {array} an array of strings with 'Happy' prepended
+ */
+
+
+function makeHappy(array) {
+    array.forEach(el => {
+        array.unshift("Happy");
+    });
+
+    return array;
+}
+
+/**
+ * 
  */
 
 /*
@@ -101,21 +151,35 @@ let unfilteredArray = [1, 2, 3, 4, 5, 6];
  * Using `forEach`, find the largest element in an array.
  * It should work for strings and numbers.
  */
+let ele = "";
 
-/*
- * CHALLENGE
- * Create and document a function called getSumOfSubArrayValues.
- *
- * Take an array of arrays and add up all sub values and return
- * the sum. For instance, if you got this array as a parameter:
- * [
- *   [1, 2, 3],
- *   [2, 4, 6],
- *   [5, 10, 15]
- * ];
- *
- * You would return 48. To do this, you will use two nested `reduce`
- * calls with two anonymous functions.
- *
- * Read the tests to verify you have the correct behavior.
- */
+function findLargest(array) {
+
+    array.forEach(function(ele) {
+            if (ele.length > longestele.length) {
+                longestele = ele;
+            }
+        }
+        return longestele;
+    }
+
+
+
+
+    /*
+     * CHALLENGE
+     * Create and document a function called getSumOfSubArrayValues.
+     *
+     * Take an array of arrays and add up all sub values and return
+     * the sum. For instance, if you got this array as a parameter:
+     * [
+     *   [1, 2, 3],
+     *   [2, 4, 6],
+     *   [5, 10, 15]
+     * ];
+     *
+     * You would return 48. To do this, you will use two nested `reduce`
+     * calls with two anonymous functions.
+     *
+     * Read the tests to verify you have the correct behavior.
+     */

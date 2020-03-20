@@ -6,6 +6,10 @@
  * @returns {number} 1
  */
 
+function turnOn() {
+    return true;
+}
+
 /**
  * Create a function called returnsName.
  *
@@ -14,6 +18,10 @@
  * @returns {string} your name
  */
 
+function returnsName() {
+    return "Rob";
+}
+
 /**
  * Create a function called returnGivenParameter that takes a
  * single parameter and then returns it.
@@ -21,6 +29,10 @@
  * @param {any} thing any value
  * @returns {any} the parameter that we were given
  */
+
+function returnGivenParameter(thing) {
+    return thing;
+}
 
 /**
  * Now create a function called takeOptionalParameter
@@ -31,6 +43,14 @@
  * @param {any} [thing=0] any value
  * @returns {any} the parameter given, or 0 if none is given
  */
+
+function takeOptionalParameter(thing) {
+    if (thing) {
+        return thing;
+    } else {
+        return "0"
+    }
+}
 
 /**
  * Write an anonymous function in the filter that will
@@ -44,9 +64,9 @@
  * @returns {number[]} the filtered array
  */
 function filterArrayToOnlySingleDigitNumbers(arrayToFilter) {
-  return arrayToFilter.filter(
-    // WRITE CODE HERE
-  );
+    return arrayToFilter.filter(
+        // WRITE CODE HERE
+    );
 }
 
 /**
@@ -60,9 +80,9 @@ function filterArrayToOnlySingleDigitNumbers(arrayToFilter) {
  * @returns {number[]} a array that has each number doubled
  */
 function mapArrayToDoubleAllNumbers(arrayToDouble) {
-  return arrayToDouble.map(
-    // WRITE CODE HERE
-  );
+    return arrayToDouble.map(
+        // WRITE CODE HERE
+    );
 }
 
 /**
@@ -77,9 +97,9 @@ function mapArrayToDoubleAllNumbers(arrayToDouble) {
  * @returns {number} the product of the array
  */
 function reduceArrayToFindProduct(arrayToMultiply) {
-  return arrayToMultiply.reduce(
-    // WRITE CODE HERE
-  );
+    return arrayToMultiply.reduce(
+        // WRITE CODE HERE
+    );
 }
 
 /**
@@ -90,9 +110,9 @@ function reduceArrayToFindProduct(arrayToMultiply) {
  * @returns {string[]} the filtered array
  */
 function filterStringArrayForSon(arrayToFilter) {
-  return arrayToFilter.filter(
-    // WRITE CODE HERE
-  );
+    return arrayToFilter.filter(
+        // WRITE CODE HERE
+    );
 }
 
 /**
@@ -103,9 +123,9 @@ function filterStringArrayForSon(arrayToFilter) {
  * @returns {string[]} names in all upper case
  */
 function makeNamesAllCaps(arrayToCapitalize) {
-  return arrayToCapitalize.map(
-    // WRITE CODE HERE
-  );
+    return arrayToCapitalize.map(
+        // WRITE CODE HERE
+    );
 }
 
 /*
@@ -120,15 +140,15 @@ function makeNamesAllCaps(arrayToCapitalize) {
  */
 
 function convertTemperature(temperature, temperatureUnit, includeUnit = false) {
-  let convertedTemp = 0;
-  let convertedUnit = 'F';
-  if (temperatureUnit === 'C' || temperatureUnit === 'c') {
-    convertedTemp = (temperature * 9) / 5 + 32;
-    convertedUnit = 'F';
-  } else {
-    convertedTemp = ((temperature - 32) * 5) / 9;
-    convertedUnit = 'C';
-  }
+    let convertedTemp = 0;
+    let convertedUnit = 'F';
+    if (temperatureUnit === 'C' || temperatureUnit === 'c') {
+        convertedTemp = (temperature * 9) / 5 + 32;
+        convertedUnit = 'F';
+    } else {
+        convertedTemp = ((temperature - 32) * 5) / 9;
+        convertedUnit = 'C';
+    }
 
-  return convertedTemp + (includeUnit ? convertedUnit : ''); // convert to string
+    return convertedTemp + (includeUnit ? convertedUnit : ''); // convert to string
 }
