@@ -30,39 +30,51 @@ const groceries = [{
  */
 function setPageTitle() {
 
-    document.querySelector('#title').innerText = pageTitle;
+    // let pageTitle = document.getElementById('title');
+    // pageTitle.innerText = name;
 
+    document.getElementById('title').innerText = pageTitle;
 };
 
 /**
  * This function will loop over the array of groceries that was set above and add them to the DOM.
  */
 function displayGroceries() {
-    let grocery = document.getElementById('shopping-list > groceries');
+    let grocery = document.getElementById('groceries');
 
     groceries.forEach(g => {
-        // create a div element
-        let ul = document.createElement('ul');
-        // add 'class' review to div element
-        ul.classList.add('grocery');
-        addGrocery(ul, g.groceries);
-        main.insertAdjacentElement('beforeend', ul);
+        let ele = document.createElement('li');
+        ele.classList.add('grocery');
+        ele.innerText = g.grocery;
+        grocery.insertAdjacentElement('beforeend', ele);
     });
+}
+
+/**
+ * This function will be called when the button is clicked. You will need to get a reference
+ * to every list item and add the class completed to each one
+ */
+
+// // function markCompleted() {
+// //     let ele = document.getElementsByClassName('groceries');
+// //     for (let i = 0; i < ele.length; i++) {
+// //         ele[i].style.setProperty = 'line-through';
 
 
-    /**
-     * This function will be called when the button is clicked. You will need to get a reference
-     * to every list item and add the class completed to each one
-     */
-    function markCompleted() {}
+// alert(document.getElementById("myP").style.textDecoration);
+// }
+function markCompleted() {
+    document.getElementById('groceries').style.textDecorationLine = "line-through";
+}
 
-    setPageTitle();
 
-    displayGroceries();
+setPageTitle();
 
-    // Don't worry too much about what is going on here, we will cover this when we discuss events.
-    document.addEventListener('DOMContentLoaded', () => {
-        // When the DOM Content has loaded attach a click listener to the button
-        const button = document.querySelector('.btn');
-        button.addEventListener('click', markCompleted);
-    });
+displayGroceries();
+
+// Don't worry too much about what is going on here, we will cover this when we discuss events.
+document.addEventListener('DOMContentLoaded', () => {
+    // When the DOM Content has loaded attach a click listener to the button
+    const button = document.querySelector('.btn');
+    button.addEventListener('click', markCompleted);
+});
