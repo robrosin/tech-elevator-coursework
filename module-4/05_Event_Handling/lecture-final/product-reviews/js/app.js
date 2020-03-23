@@ -18,6 +18,13 @@ let reviews = [
 function setPageTitle() {
   const pageTitle = document.getElementById('page-title');
   pageTitle.querySelector('.name').innerText = name;
+
+  let main = document.getElementById("main");
+  let divs = document.getElementsByTagName('div');
+  let divArray = Array.from(divs);
+  divArray.forEach( d => {
+    console.log(d.innerText);
+  });
 }
 
 /**
