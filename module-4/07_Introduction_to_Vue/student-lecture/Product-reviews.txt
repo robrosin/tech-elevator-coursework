@@ -1,0 +1,129 @@
+/***
+  1. Create a new Vue app.
+    > Vue Create product-review
+      Take default values
+
+	2. Explore the folder structure
+    * package.json, node_modules (note: no need to npm install)
+
+  3. Run the app
+    > npm run serve
+
+  4. Look at the existing component: HelloWorld
+    template, script and style
+      Template: Single HTML element inside
+      Script: "exports" the HelloWorld object
+        props "msg" on the object
+      Style: scoped to only this component
+
+  5. Find the "root" component: App.vue
+    Also has template, script and style
+      Template: contains *html* tag HelloWorld
+      Script: import and export (import "uses" HelloWorld, export makes App available)
+
+  
+  6. Modify HelloWorld
+    * Change tag to hello-world
+    * Change Prop Value (msg attribute)
+    * Change content
+    * Save and see live view
+
+  7. Create ProductReview.vue
+      * Add style
+      * Add export, object and data function, and styles
+  8. Add product-review component to the App (root) component
+    * import / export
+    * Add tag to HTML
+        
+***/
+
+
+
+
+/***********************************************************/
+Data:
+/***********************************************************/
+
+      name: "Cigar Parties for Dummies",
+      description:
+        "Host and plan the perfect cigar party for all of your squirrelly friends.",
+      reviews: [
+        {
+          reviewer: "Malcolm Gladwell",
+          title: "What a book!",
+          review:
+            "It certainly is a book. I mean, I can see that. Pages kept together with glue (I hope that's glue) and there's writing on it, in some language.",
+          rating: 3
+        },
+        {
+          reviewer: "Tim Ferriss",
+          title: "Had a cigar party started in less than 4 hours.",
+          review:
+            "It should have been called the four hour cigar party. That's amazing. I have a new idea for muse because of this.",
+          rating: 4
+        },
+        {
+          reviewer: "Ramit Sethi",
+          title: "What every new entrepreneurs needs. A door stop.",
+          review:
+            "When I sell my courses, I'm always telling people that if a book costs less than $20, they should just buy it. If they only learn one thing from it, it was worth it. Wish I learned something from this book.",
+          rating: 1
+        },
+        {
+          reviewer: "Gary Vaynerchuk",
+          title: "And I thought I could write",
+          review:
+            "There are a lot of good, solid tips in this book. I don't want to ruin it, but prelighting all the cigars is worth the price of admission alone.",
+          rating: 3
+        }
+      ]
+
+
+/***********************************************************/
+Original Template (from M4 Day 3)
+/***********************************************************/
+        <template id="review-template">
+        <div class="review">
+            <h4></h4>
+            <div class="rating">
+                <img src="img/star.png" class="ratingStar"/>
+            </div>
+            <h3></h3>
+            <p></p>
+        </div>
+        </template>
+
+
+/***********************************************************/
+Styles:
+/***********************************************************/
+
+div.review {
+    border: 1px black solid;
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 10px;
+}
+
+div.review div.rating {
+    height: 2rem;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0.5rem;
+}
+
+div.review div.rating img {
+    height: 100%;
+}
+
+div.review p {
+    margin: 20px;
+}
+
+h3 {
+    display: inline-block;
+}
+
+h4 {
+    font-size: 1rem;
+}
