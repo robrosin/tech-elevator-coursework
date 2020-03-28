@@ -8,7 +8,7 @@
           </div>
           <div class="form-group">
             <label for="shippingAddress">Address</label>
-            <input type="text" class="form-control" id="shippingAddress" placeholder="1234 Main St" />
+            <input type="text" class="form-control" id="shippingAddress" placeholder="1234 Main St" v-model="shipping.address"/>
           </div>
           <div class="form-group">
             <label for="shippingAddress2">Address 2</label>
@@ -17,16 +17,17 @@
               class="form-control"
               id="shippingAddress2"
               placeholder="Apartment, studio, or floor"
+              v-model="shipping.address2"
             />
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="shippingCity">City</label>
-              <input type="text" class="form-control" id="shippingCity" />
+              <input type="text" class="form-control" id="shippingCity" v-model="shipping.city"/>
             </div>
             <div class="form-group col-md-4">
               <label for="shippingState">State</label>
-              <select id="shippingState" class="form-control">
+              <select id="shippingState" class="form-control" v-model="shipping.state">
                 <option value selected>Choose...</option>
                 <option value="MI">MI</option>
                 <option value="OH">OH</option>
@@ -35,7 +36,7 @@
             </div>
             <div class="form-group col-md-2">
               <label for="shippingZip">Zip</label>
-              <input type="text" class="form-control" id="shippingZip" />
+              <input type="text" class="form-control" id="shippingZip" v-model="shipping.zip"/>
             </div>
           </div>
           <div class="form-row">
@@ -49,7 +50,7 @@
                   id="delivertoFrontDoor"
                   value="Front Door"
                   checked
-                />
+                  />
                 <label class="form-check-label" for="delivertoFrontDoor">Front Door</label>
               </div>
               <div class="form-check">
@@ -86,6 +87,7 @@
                 class="form-control"
                 id="billingAddress"
                 placeholder="1234 Main St"
+                v-model="billing.address"
               />
             </div>
             <div class="form-group">
@@ -95,6 +97,7 @@
                 class="form-control"
                 id="billingAddress2"
                 placeholder="Apartment, studio, or floor"
+                v-model="billing.address2"
               />
             </div>
             <div class="form-row">
@@ -104,7 +107,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="billingState">State</label>
-                <select id="billingState" class="form-control">
+                <select id="billingState" class="form-control" v-model="billing.state">
                   <option value selected>Choose...</option>
                   <option value="MI">MI</option>
                   <option value="OH">OH</option>
@@ -113,7 +116,7 @@
               </div>
               <div class="form-group col-md-2">
                 <label for="billingZip">Zip</label>
-                <input type="text" class="form-control" id="billingZip" />
+                <input type="text" class="form-control" id="billingZip" v-model="billing.zip"/>
               </div>
             </div>
           </div>
@@ -126,49 +129,49 @@
           <h3>Shipping Address</h3>
           <div class="line-item">
             Address:
-            <span class="shipping-address"></span>
+            <span class="shipping-address" >{{shipping.address}}</span>
           </div>
           <div class="line-item">
             Address 2:
-            <span class="shipping-address2"></span>
+            <span class="shipping-address2" >{{shipping.address2}}</span>
           </div>
           <div class="line-item">
             City:
-            <span class="shipping-city"></span>
+            <span class="shipping-city" >{{shipping.city}}</span>
           </div>
           <div class="line-item">
             State:
-            <span class="shipping-state"></span>
+            <span class="shipping-state" >{{shipping.state}}</span>
           </div>
           <div class="line-item">
             Zip:
-            <span class="shipping-zip"></span>
+            <span class="shipping-zip" >{{shipping.zip}}</span>
           </div>
           <div class="line-item">
             Deliver to:
-            <span class="shipping-deliverto"></span>
+            <span class="shipping-deliverto" >{{shipping.deliverto}}</span>
           </div>
 
           <h3>Billing Address</h3>
           <div class="line-item">
             Address:
-            <span class="billing-address"></span>
+            <span class="billing-address" >{{billing.address}}</span>
           </div>
           <div class="line-item">
             Address 2:
-            <span class="billing-address2"></span>
+            <span class="billing-address2" >{{billing.address2}}</span>
           </div>
           <div class="line-item">
             City:
-            <span class="billing-city"></span>
+            <span class="billing-city" >{{billing.city}}</span>
           </div>
           <div class="line-item">
             State:
-            <span class="billing-state"></span>
+            <span class="billing-state" >{{billing.state}}</span>
           </div>
           <div class="line-item">
             Zip:
-            <span class="billing-zip"></span>
+            <span class="billing-zip" >{{billing.zip}}</span>
           </div>
         </div>
       </div>
@@ -178,11 +181,28 @@
 
 <script>
 export default {
-  name: "address-info",
-  data() {
-    return {};
-  }
+  data(){
+    return{
+      shipping: {
+        address: "",
+        address2: "",
+        city: "",
+        state: "",
+        zip: "",
+        deliverto: ""
+    },
+      billing: {
+      address: "",
+      address2: "",
+      city: "",
+      state: "",
+      zip: ""      
+    }
+  };
+}
 };
+
+
 </script>
 
 <style>
