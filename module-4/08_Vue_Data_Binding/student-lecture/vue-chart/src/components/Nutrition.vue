@@ -1,9 +1,9 @@
 <template>
   <div class="nutrition-control">
     <!-- TODO: 1-way data bind to the user name -->
-    <h2>Nutrition information for</h2>
+    <h2>Nutrition information for {{userName}}</h2>
     <!-- TODO: 1-way data bind to the logDate -->
-    <h3></h3>
+    <h3>{{ logDate }}</h3>
     <!-- add a form for nutrition element across meals -->
     <table style="text-align: right;">
       <thead>
@@ -17,38 +17,38 @@
       </thead>
       <tbody>
         <!-- TODO: loop through meals here, bind input boxes to model fields -->
-        <tr>
+        <tr v-for = "meal in meals" v-bind:key="meal.id" >          
           <td>
-            <input type="text" />
+            <input type="text" v-model="meal.meal" />
           </td>
           <td>
-            <input type="number" />
+            <input type="number" v-model.number="meal.carbs"/>
           </td>
           <td>
-            <input type="number" />
+            <input type="number" v-model.number="meal.protein"/>
           </td>
           <td>
-            <input type="number" />
+            <input type="number" v-model.number="meal.fat"/>
           </td>
           <!-- TODO: Add meal total here, calling calories() method -->
-          <td></td>
+          <td>{{calories(meal)}}</td>
         </tr>
         <tr>
           <!-- TODO: add total g values here -->
           <td>Grams</td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{{totalCarbs}}</td>
+          <td>{{totalProtein}}</td>
+          <td>{{totalFat}}</td>
           <td></td>
         </tr>
         <tr>
           <!-- TODO: add total calories values here -->
           <td>Calories</td>
-          <td></td>
-          <td></td>
+          <td>{{totalCarbs * 4}}</td>
+          <td>{{totalProtein * 4}}</td>
           <!-- TODO: Apply the "high" class if Fat or Calories is deemed high -->
-          <td></td>
-          <td></td>
+          <td>{{totalFat * 9}}</td>
+          <td>{{totalCalories}}</td>
         </tr>
       </tbody>
     </table>
@@ -58,9 +58,9 @@
     <!-- TODO: Set the width of the bars based on percentages -->
     <h3>Stacked Bar Chart</h3>
     <div class="barchart">
-      <div class="barchart-carbs"></div>
-      <div class="barchart-protein"></div>
-      <div class="barchart-fat"></div>
+      <div class="barchart-carbs" v-bind:style="{width: percentCarbs}">{{percentCarbs}}</div>
+      <div class="barchart-protein" v-bind:style="{width: percentProtein}">{{percentProtein}}</div>
+      <div class="barchart-fat" v-bind:style="{width: percentFat}">{{percentFat}}</div>
     </div>
     <br />
 
@@ -69,15 +69,15 @@
     <div class="barchart3">
       <div class="chart3row">
         <div class="chart3title">Carbs</div>
-        <div class="barchart-carbs"></div>
+        <div class="barchart-carbs" v-bind:style="{width: percentCarbs}">{{percentCarbs}}</div>
       </div>
       <div class="chart3row">
         <div class="chart3title">Protein</div>
-        <div class="barchart-protein"></div>
+        <div class="barchart-protein" v-bind:style="{width: percentProtein}">{{percentProtein}}</div>
       </div>
       <div class="chart3row">
         <div class="chart3title">Fat</div>
-        <div class="barchart-fat"></div>
+        <div class="barchart-fat" v-bind:style="{width: percentFat}">{{percentFat}}</div>
       </div>
     </div>
   </div>
@@ -146,16 +146,24 @@ export default {
       );
     },
     totalCarbs() {
-      return 0;
+      return this.meals.reduce( (sum, m) => {
+        return sum + m.carbs;
+      }, 0)
     },
-    totalProtein() {
-      return 0;
+    totalProtein()  {
+      return this.meals.reduce( (sum, m) => {
+        return sum + m.protein;
+      }, 0)
     },
-    totalFat() {
-      return 0;
+    totalFat()  {
+      return this.meals.reduce( (sum, m) => {
+        return sum + m.fat;
+      }, 0)
     },
     totalCalories() {
-      return 0;
+      return this.meals.reduce( (sum, m) => {
+        return sum + this.calories(m);
+      }, 0)
     },
     percentCarbs() {
       if (this.totalCalories == 0 || this.totalCarbs === 0) return "";
