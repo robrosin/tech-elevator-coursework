@@ -55,7 +55,7 @@ export default {
       this.searchString = eventPayload;
     }
   }
-}
+};
 </script>
 
 <style>

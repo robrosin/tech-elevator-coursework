@@ -1,22 +1,15 @@
 <template>
   <div id="app">
-    <header>
-      <div class="heading">Awesome Book Reviews</div>
-    </header>
-    <product-review />
+<header>
+  <ul class="nav">
+      <router-link v-bind:to="{name: 'home'}" tag="li">Home</router-link>
+      <router-link v-bind:to="{name: 'about'}" tag="li">About the Author</router-link>
+      <router-link v-bind:to="{name: 'books'}" tag="li">Related Books</router-link>
+  </ul>
+</header>
+    <router-view class="content"/>
   </div>
 </template>
-
-<script>
-import ProductReview from '@/components/ProductReview.vue'
-
-export default {
-  name: 'app',
-  components: {
-    ProductReview
-  }
-}
-</script>
 
 <style>
 #app {
@@ -70,7 +63,7 @@ header > .heading {
 .nav li a:hover {
   color:rgb(44, 44, 44);
 }
-.router-link-active {
+ul li.router-link-exact-active {
   background-color: rgb(44, 44, 44);
 }
 </style>

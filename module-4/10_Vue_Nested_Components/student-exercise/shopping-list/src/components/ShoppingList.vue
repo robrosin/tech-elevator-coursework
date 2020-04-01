@@ -2,7 +2,7 @@
     <div class="shopping-list">
         <h2>{{title}}</h2>
         <ul>
-            <li v-for="item in data" 
+            <li v-for="item in filteredData" 
                 v-bind:key="item.id" 
                 v-bind:class="{ completed: item.completed }" 
                 v-on:click="changeStatus(item.id,$event)">
@@ -18,7 +18,9 @@
 export default {
     name: 'shopping-list',
     props: {
-
+        title: String,
+        search: String,
+        data: Array
     },
     data() {
         return {
@@ -37,10 +39,16 @@ export default {
             }
         }
     },
+// Computed method should compare search input and filter accordingly
+    
     computed: {
-
+        filteredData() {
+            const filter = new RegExp(this.search, "i");
+            return this.data.filter(data => data.name.match(filter));
     }
 }
+};
+
 </script>
 
 <style>

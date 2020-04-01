@@ -1,25 +1,28 @@
 <template>
     <div class="search">
         <input type="text" id="search" name="search" 
-        v-on:keyup="searchChanged" 
+        v-on:keyup="searchChanged"
         v-model="searchString"
-        placeholder="Search Todo's..."/>
+        placeholder="Search Shopping List..."/>
     </div>
 </template>
 
 <script>
 export default {
-    data() {
+    props: {
+search: String
+    },
+    data(){
         return {
-            searchString : ''
+            searchString: ''
         }
     },
     methods: {
-        searchChanged() {
-            this.$emit('search-change', this.searchString);
-        }
+searchChanged() {
+    this.$emit('search-change', this.searchString);
+}
     }
-};
+}
 </script>
 
 <style>
@@ -27,7 +30,6 @@ export default {
     width:100%;
     font-size:24px;
     font-family: 'Roboto Condensed', sans-serif;
-    margin-top:50px;
     padding:10px;
 }
 </style>
