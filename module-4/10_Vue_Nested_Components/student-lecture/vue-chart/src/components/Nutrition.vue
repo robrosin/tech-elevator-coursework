@@ -23,15 +23,15 @@
           </td>
           <td>
             <!-- TODO 02c: Call the method to emit the data-change event -->
-            <input type="number" v-model.number="meal.carbs" />
+            <input type="number" v-model.number="meal.carbs" v-on:change="emitChangeEvent"/>
           </td>
           <td>
             <!-- TODO 02c: Call the method to emit the data-change event -->
-            <input type="number" v-model.number="meal.protein" />
+            <input type="number" v-model.number="meal.protein" v-on:change="emitChangeEvent"/>
           </td>
           <td>
             <!-- TODO 02c: Call the method to emit the data-change event -->
-            <input type="number" v-model.number="meal.fat" />
+            <input type="number" v-model.number="meal.fat" v-on:change="emitChangeEvent"/>
           </td>
           <td>{{calories(meal)}}</td>
           <!-- TODO REVIEW: Add a link to remove the current meal -->
@@ -152,7 +152,13 @@ export default {
     },
 
     // TODO 02a: Add the chartData computed property (method) to return the array of data to be charted
-
+  chartData() {
+    return [
+      { label: "Carbs", color: "Yellow", value: this.totalCarbs * 4},
+      { label: "Protein", color: "LightGreen", value: this.totalProtein * 4 },
+      { label: "Fat", color: "LightBlue", value: this.totalFat * 9}        
+    ]
+  },
     // TODO REVIEW: Add a computed property to calculate the next id for a meal
     nextMealId() {
       return (
@@ -165,6 +171,9 @@ export default {
 
   methods: {
     // TODO 02b: Create a method (emitChangeEvent) to signify the change of nutrition data
+    emitChangeEvent() {
+      this.$emit("data-change", this.chartData);
+    },
 
     calories(meal) {
       return meal.carbs * 4 + meal.protein * 4 + meal.fat * 9;
@@ -191,6 +200,7 @@ export default {
       this.meals.splice(index, 1);
 
       // TODO 02c: Call the method to emit the data-change event
+      this.emitChangeEvent();
     }
   }
 };

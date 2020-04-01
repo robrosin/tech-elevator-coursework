@@ -2,14 +2,16 @@
   <div id="app">
     <!-- TODO 03: Handle the data-change event and update the nutritionData data property -->
     <!-- TODO 05: Add a value for the userName property -->
-    <nutrition></nutrition>
+    <nutrition v-on:data-change="onDataChange"></nutrition>
     <div class="charts">
       <!-- TODO 01: Add a stacked-bar-chart component to display the data graphically. Bind the chart to nutritionData -->
+      <stacked-bar-chart class="chart" v-bind:chartData="nutritionData" ></stacked-bar-chart>
       <!-- TODO 05: Display the chart only if there is any nutritionData -->
       <!-- TODO 05: Add a title property to the chart -->
 
 
       <!-- TODO 01: Add a bar-chart component to display the data graphically. Bind the chart to nutritionData -->
+      <bar-chart class="chart" v-bind:chartData="nutritionData"></bar-chart>
       <!-- TODO 05: Display the chart only if there is any nutritionData -->
       <!-- TODO 05: Add a title property to the chart -->
       <!-- TODO 05: Pass in the scaleToLargest property -->
@@ -22,16 +24,20 @@
 // TODO 01: Add components to the App (BarChart and StackedBarChart)
 // TODO 03: Handle the data-change event in App.vue to pass the data on to other components
 import Nutrition from "./components/Nutrition.vue";
+import BarChart from "./components/BarChart.vue";
+import StackedBarChart from "./components/StackedBarChart.vue";
 
 export default {
   name: "app",
   components: {
     nutrition: Nutrition,
+    "bar-chart": BarChart,
+    "stacked-bar-chart" : StackedBarChart
   },
   data() {
     return {
       /* TODO 03a: Add a nutritionData property to store the array of nutrition data in objects that have: label, value, color properties */
-
+    nutritionData: []
     };
   },
   methods: {
@@ -40,6 +46,9 @@ export default {
      * Whenever the nutrition data changes in the nutrition component, we change it here.  This property is bound to the charts,
      * so they will automatically get updated.
      */
+    onDataChange(newChartData) {
+      this.nutritionData = newChartData;
+    }
 
   }
 };

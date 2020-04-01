@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <todo-search></todo-search>
-    <todo-list title="My Work Todo's" v-bind:todos="work"></todo-list>
-    <todo-list title="My Personal Todo's" v-bind:todos="personal"></todo-list>
-    <todo-list title="My Household Todo's" v-bind:todos="household"></todo-list>
+    <todo-search v-on:search-change="handleSearch"></todo-search>
+    <todo-list title="My Work Todo's" v-bind:todos="work" v-bind:search="searchString" ></todo-list>
+    <todo-list title="My Personal Todo's" v-bind:todos="personal" v-bind:search="searchString" ></todo-list>
+    <todo-list title="My Household Todo's" v-bind:todos="household" v-bind:search="searchString" ></todo-list>
   </div>
 </template>
 
@@ -19,6 +19,7 @@ export default {
   },
   data() {
     return {
+      searchString: '',
       work: [
         { id: 1, task: 'Create new presentation', completed: false },
         { id: 2, task: 'Add slides to presentation', completed: false },
@@ -48,8 +49,10 @@ export default {
       ],
     }
   },
-  methods: {
-
+methods: {
+    handleSearch(searchValue) {
+       this.searchString = searchValue;
+    }
   }
 }
 </script>
