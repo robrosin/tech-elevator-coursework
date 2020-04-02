@@ -11,25 +11,24 @@ let reviews = [];
 function loadReviews() {
   console.log("Load Reviews...");
   //const urlToFetch = 'data.json';
-  const urlToFetch = 'https://my-json-server.typicode.com/blazebiz/json1/reviewsXX';
+  const urlToFetch = 'https://my-json-server.typicode.com/blazebiz/json1/reviews';
 
   // TODO: fetch data here...
   fetch(urlToFetch)
     .then(
       (response) => {
-        if (response.ok)
-        {
-        response.json()
-          .then( json => {
-            reviews = json;
-            displayReviews();
-          })
+        if (response.ok) {
+          response.json()
+            .then(json => {
+              reviews = json;
+              displayReviews();
+            })
         }
         else {
           console.log(`There was an error: ${response}`);
         }
       }
-    ).catch( err => {
+    ).catch(err => {
       console.log(err);
     });
 
