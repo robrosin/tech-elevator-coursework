@@ -2,13 +2,13 @@
   <div id="app">
     <header>
       <ul class="nav">
-        <li><i class="fas fa-home"></i>Home</li>
-        <li><i class="fas fa-shopping-basket"></i>Shop By Department</li>
-        <li><i class="fas fa-coins"></i>On Sale This Week</li>
+        <li class="home"><router-link v-bind:to="{name: 'home'}" class="fas fa-home">Home</router-link></li>
+        <li><router-link v-bind:to="{name: 'products'}" class="fas fa-shopping-basket">Shop By Department</router-link></li>
+        <li><router-link v-bind:to="{name: 'weekly-specials'}" class="fas fa-coins">On Sale This Week</router-link></li>
       </ul>
       <ul class="nav-right">
-        <li><i class="fas fa-shopping-cart"></i>Shopping Cart</li>
-        <li><i class="fas fa-cash-register"></i>Checkout</li>
+        <li><router-link v-bind:to="{name: 'cart'}" class="fas fa-shopping-cart">Shopping Cart</router-link></li>
+        <li><router-link v-bind:to="{name: 'checkout'}" class="fas fa-cash-register">Checkout</router-link></li>
       </ul>
     </header>
     <div class="content">

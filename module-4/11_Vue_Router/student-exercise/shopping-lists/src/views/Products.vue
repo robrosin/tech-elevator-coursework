@@ -2,8 +2,11 @@
   <div class="products">
     <h1>Shop By Department</h1>
     <p>Below is a list of our departments. Please click on a department to view available products by department.</p>
-    <div class="departments">
+    <div class="departments" >
       <!-- links to each department -->
+      <router-link v-bind:to="'/products'+department.path" v-for="department in departments" v-bind:key=department.path>
+        <img v-bind:src="require('../assets/images/' + department.banner)"/>
+      </router-link>
     </div>
   </div>
 </template>

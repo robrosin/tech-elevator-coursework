@@ -48,29 +48,56 @@ export default {
   },
   data() {
     return {
-      city: null
+      city: {
+        cityId: 0,
+        name: "",
+        district: "",
+        countryCode: "",
+        population: 0
+      }
     };
   },
   methods: {
     getCity(id) {
       // TODO 04: use fetch to get the city given an id
-      
+
       let url = `${process.env.VUE_APP_REMOTE_API}/cities/${id}`;
-      console.log(url);
 
       // fetch here...
+      fetch(url)
+        .then(response => {
+          response.json().then(json => {
+            this.city = json;
+          });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     saveCity() {
       // TODO 05: use fetch to Update the city on the server (PUT)
       let url = `${process.env.VUE_APP_REMOTE_API}/cities/${this.city.cityId}`;
-      console.log(url);
 
       // fetch here...
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(this.city)
+      }).then(response => {
+        if (response.ok) {
+          alert("City has been updated!");
+        } else {
+          alert(`There was error updating: ${response.status}: ${response.statusText}`
+          );
+        }
+      });
     }
   },
   created() {
     // TODO 04: Call getCity using the param id to populate the data
-    
+    this.getCity(this.$route.params.id);
   }
 };
 </script>

@@ -7,7 +7,7 @@
 
 <script>
 import data from '../assets/data/products.json'
-import ProductsList from '@/components/ProductsList'
+import ProductsList from '@/components/ProductsList.vue'
 
 export default {
   name: 'products',
@@ -26,7 +26,7 @@ export default {
     }
   },
   created() {
-
+this.getProducts(this.$route.params.department)
   }
 }
 </script>

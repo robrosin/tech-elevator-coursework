@@ -51,14 +51,34 @@ export default {
       // TODO 02: add in the query string parameters
 
       // This is the url...
-      //let url = `${process.env.VUE_APP_REMOTE_API}/cities`;
+      let url = `${process.env.VUE_APP_REMOTE_API}/cities`;
+
+      if (this.searchCountry){
+        url += `?countryCode=${this.searchCountry}`;
+        if(this.searchDistrict){
+          url += `&district=${this.searchDistrict}`;
+        }
+      }
 
       // fetch here...
-
+      fetch(url)
+      .then(response => {
+        response.json()
+        .then(json => {
+          this.cities = json;
+        })
+      }).catch(err => {
+        console.log(err)
+      });
     }
   },
   created() {
     // TODO 02: Get QS parameters from the route and populate them in data
+    this.searchCountry = this.$route.query.countryCode;
+    this.searchDistrict = this.$route.query.district;
+    if (this.searchCountry){
+      this.getData();
+    }
   }
 };
 </script>

@@ -61,13 +61,21 @@ export default {
       // TODO 03: Use fetch to get data and populate the city data field
       // This is the url...
       let url = `${process.env.VUE_APP_REMOTE_API}/cities/${id}`;
-      console.log(url);
-      // fetch here...
+      
+            // fetch here...
+            fetch(url)
+            .then(response => {
+              response.json()
+              .then(json => {
+                this.city=json;
+              })
+            }).catch(err => {
+            console.log(err)});
     }
   },
   created() {
     // TODO 03: call getCity passing in the id from params
-
+this.getCity(this.$route.params.id);
   }
 };
 </script>
