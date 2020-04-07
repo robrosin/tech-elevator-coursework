@@ -44,8 +44,9 @@ function displayList() {
 
             const temp = document.getElementById('shopping-list-item-template').content.cloneNode(true);
 
-            temp.querySelector('.').innerText = list.name;
+            temp.querySelector(".far fa-check-circle").className = item.completed;
+            temp.querySelector(".shopping-list-item-template").innerText = item.name;
             container.appendChild(temp);
-        })
+        });
     }
 }

@@ -6,6 +6,7 @@ import Products from '@/views/Products.vue'
 import WeeklySpecials from '@/views/WeeklySpecials.vue'
 import ShoppingCart from '@/views/ShoppingCart.vue'
 import ProductsList from '@/views/ProductsList.vue'
+import Product from '@/views/Product.vue'
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
             path: '/products/:department',
             name: 'products-list',
             component: ProductsList
+        },
+        {
+            path: 'product/:sku',
+            name: 'product',
+            component: Product
         }
     ]
 })
